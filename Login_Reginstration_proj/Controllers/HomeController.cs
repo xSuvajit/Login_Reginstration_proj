@@ -11,6 +11,7 @@ namespace Login_Reginstration_proj.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "suvajit faizal Page";
+            ViewBag.Title = "suvajit faizal koushik Page";
             return View();
         }
     }
