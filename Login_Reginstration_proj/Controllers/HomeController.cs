@@ -10,7 +10,6 @@ namespace Login_Reginstration_proj.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home";
 
             return View();
         }
