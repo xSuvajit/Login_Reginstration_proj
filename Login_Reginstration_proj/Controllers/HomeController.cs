@@ -12,6 +12,7 @@ namespace Login_Reginstration_proj.Controllers
         {
             ViewBag.Title = "suvajit faizal Page";
             ViewBag.Title = "suvajit faizal koushik Page";
+            ViewBag.Ayush = "Ayush Susmithha Page";
             return View();
         }
     }
