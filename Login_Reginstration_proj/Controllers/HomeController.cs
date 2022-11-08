@@ -10,7 +10,7 @@ namespace Login_Reginstration_proj.Controllers
     {
         public ActionResult Index()
         {
-
+            ViewBag.Title = "suvajit Page";
             return View();
         }
     }
