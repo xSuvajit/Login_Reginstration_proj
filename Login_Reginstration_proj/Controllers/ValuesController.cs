@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -13,14 +15,30 @@ namespace Login_Reginstration_proj.Controllers
     {
         private HCLEntities obj = new HCLEntities();
 
-        string cs = @"data source=STAR_DUST\SQLEXPRESS;initial catalog=HCL;integrated security=True";
-        //using(SqlConnection con = new SqlConnection(cs))
-        //{
+        //string cs = @"data source=STAR_DUST\SQLEXPRESS;initial catalog=HCL;integrated security=True";
+        //string cons = getConString();
 
-        //}
+        private SqlConnection con = new SqlConnection(getConString());
+
+        private static string getConString()
+        {
+            using (var streamReader = File.OpenText(@"C:\Connection.txt"))
+            {
+                var lines = streamReader.ReadToEnd();
+                return lines;
+            }
+        }
+
         // GET api/values
         public IEnumerable<Employee> Get()
         {
+            //using (SqlConnection con = new SqlConnection(cons))
+            //{
+            //    SqlCommand sql = new SqlCommand("select * from Employees", con);
+            //    con.Open();
+            //}
+
+            con.Open();
             return obj.Employees.ToList ();
         }
 

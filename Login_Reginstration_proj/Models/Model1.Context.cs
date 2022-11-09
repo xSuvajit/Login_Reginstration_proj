@@ -19,7 +19,6 @@ namespace Login_Reginstration_proj.Models
             : base("name=HCLEntities")
         {
         }
-      
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
