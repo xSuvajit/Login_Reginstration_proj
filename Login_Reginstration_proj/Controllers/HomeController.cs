@@ -10,13 +10,13 @@ namespace Login_Reginstration_proj.Controllers
     {     
         public ActionResult Login()
         {
-            ViewBag.Title = "Login";
+            ViewBag.Title = "Login1111";
             return View();
         }
 
         public ActionResult Register()
         {
-            ViewBag.Title = "Register";
+            ViewBag.Title = "Register1111";
             return View();
         }
     }
