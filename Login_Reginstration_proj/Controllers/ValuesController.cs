@@ -8,10 +8,16 @@ using Login_Reginstration_proj.Models;
 
 namespace Login_Reginstration_proj.Controllers
 {
-    
+
     public class ValuesController : ApiController
     {
-       private HCLEntities obj = new HCLEntities ();
+        private HCLEntities obj = new HCLEntities();
+
+        string cs = @"data source=STAR_DUST\SQLEXPRESS;initial catalog=HCL;integrated security=True";
+        //using(SqlConnection con = new SqlConnection(cs))
+        //{
+
+        //}
         // GET api/values
         public IEnumerable<Employee> Get()
         {
