@@ -4,15 +4,18 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Login_Reginstration_proj.Models;
 
 namespace Login_Reginstration_proj.Controllers
 {
+    
     public class ValuesController : ApiController
     {
+       private HCLEntities obj = new HCLEntities ();
         // GET api/values
-        public IEnumerable<string> Get()
+        public IEnumerable<Employee> Get()
         {
-            return new string[] { "value1", "value2" };
+            return obj.Employees.ToList ();
         }
 
         // GET api/values/5
