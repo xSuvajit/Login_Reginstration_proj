@@ -15,7 +15,7 @@ namespace Login_Reginstration_proj.Controllers
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "Suvajit is Great #Leader#OurBigBrother" };
         }
 
         // GET api/values/5
