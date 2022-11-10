@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Login_Reginstration_proj.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
@@ -15,18 +16,35 @@ namespace Login_Reginstration_proj.Controllers
         // GET api/values
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "Suvajit is Great #Leader#OurBigBrother" };
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public User Get(int id)
         {
-            return "value";
+            using (LoginRegistrationEntities db = new LoginRegistrationEntities())
+            {
+                return db.Users.Find(id);
+            }
+               
         }
 
         // POST api/values
-        public void Post([FromBody] string value)
+        public void Post(User u)
         {
+            using(LoginRegistrationEntities db = new LoginRegistrationEntities())
+            {
+                //if(db.Users.Find(u.contact)==null)
+                //{
+                    
+                //    Console.WriteLine("test");
+                //}
+                db.Users.Add(u);
+                db.SaveChanges();
+                    //db.Users.Add(u);
+                //if (db.Users.FirstOrDefault(e=>e.contact==u.contact) == null)
+                    
+            }
         }
 
         // PUT api/values/5

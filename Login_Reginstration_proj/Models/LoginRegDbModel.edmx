@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LoginRegistrationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LoginRegistration.dbo.Topics' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Topics">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="MyTopics" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="topicCode" />
+            <PropertyRef Name="createdBy" />
+            <PropertyRef Name="created" />
+            <PropertyRef Name="modifiedBy" />
+            <PropertyRef Name="modified" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MyTopics" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="topicCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LoginRegistration.dbo.Topics_Audit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Topics_Audit">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="MyTopics" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="topicCode" />
+            <PropertyRef Name="TopicCreationTime" />
+            <PropertyRef Name="createdBy" />
+            <PropertyRef Name="created" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MyTopics" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="topicCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TopicCreationTime" Type="datetime" Nullable="false" />
+          <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LoginRegistration.dbo.UserData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserData">
+          <Key>
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="MyTopics" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="createdBy" />
+            <PropertyRef Name="created" />
+            <PropertyRef Name="modifiedBy" />
+            <PropertyRef Name="modified" />
+          </Key>
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MyTopics" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LoginRegistration.dbo.UserData_Audit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserData_Audit">
+          <Key>
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="MyTopics" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="createdBy" />
+            <PropertyRef Name="created" />
+          </Key>
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MyTopics" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="contact" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SecretId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contact" Type="int" Nullable="false" />
+          <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Users_Audit">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="firstName" />
+            <PropertyRef Name="lastName" />
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="SecretId" />
+            <PropertyRef Name="contact" />
+            <PropertyRef Name="LastLoggedin" />
+            <PropertyRef Name="createdBy" />
+            <PropertyRef Name="created" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SecretId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contact" Type="int" Nullable="false" />
+          <Property Name="LastLoggedin" Type="datetime" Nullable="false" />
+          <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="LoginRegistrationModelStoreContainer">
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topics" EntityType="Self.Topics" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Topics].[Id] AS [Id], 
+    [Topics].[MyTopics] AS [MyTopics], 
+    [Topics].[Status] AS [Status], 
+    [Topics].[topicCode] AS [topicCode], 
+    [Topics].[createdBy] AS [createdBy], 
+    [Topics].[created] AS [created], 
+    [Topics].[modifiedBy] AS [modifiedBy], 
+    [Topics].[modified] AS [modified]
+    FROM [dbo].[Topics] AS [Topics]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Topics_Audit" EntityType="Self.Topics_Audit" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Topics_Audit].[Id] AS [Id], 
+    [Topics_Audit].[MyTopics] AS [MyTopics], 
+    [Topics_Audit].[Status] AS [Status], 
+    [Topics_Audit].[topicCode] AS [topicCode], 
+    [Topics_Audit].[TopicCreationTime] AS [TopicCreationTime], 
+    [Topics_Audit].[createdBy] AS [createdBy], 
+    [Topics_Audit].[created] AS [created]
+    FROM [dbo].[Topics_Audit] AS [Topics_Audit]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserData" EntityType="Self.UserData" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserData].[userName] AS [userName], 
+    [UserData].[MyTopics] AS [MyTopics], 
+    [UserData].[Status] AS [Status], 
+    [UserData].[createdBy] AS [createdBy], 
+    [UserData].[created] AS [created], 
+    [UserData].[modifiedBy] AS [modifiedBy], 
+    [UserData].[modified] AS [modified]
+    FROM [dbo].[UserData] AS [UserData]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserData_Audit" EntityType="Self.UserData_Audit" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserData_Audit].[userName] AS [userName], 
+    [UserData_Audit].[MyTopics] AS [MyTopics], 
+    [UserData_Audit].[Status] AS [Status], 
+    [UserData_Audit].[createdBy] AS [createdBy], 
+    [UserData_Audit].[created] AS [created]
+    FROM [dbo].[UserData_Audit] AS [UserData_Audit]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Users_Audit" EntityType="Self.Users_Audit" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Users_Audit].[Id] AS [Id], 
+    [Users_Audit].[firstName] AS [firstName], 
+    [Users_Audit].[lastName] AS [lastName], 
+    [Users_Audit].[userName] AS [userName], 
+    [Users_Audit].[SecretId] AS [SecretId], 
+    [Users_Audit].[contact] AS [contact], 
+    [Users_Audit].[LastLoggedin] AS [LastLoggedin], 
+    [Users_Audit].[createdBy] AS [createdBy], 
+    [Users_Audit].[created] AS [created]
+    FROM [dbo].[Users_Audit] AS [Users_Audit]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LoginRegistrationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="contact" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SecretId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contact" Type="Int32" Nullable="false" />
+          <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="MyTopics" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="topicCode" />
+            <PropertyRef Name="createdBy" />
+            <PropertyRef Name="created" />
+            <PropertyRef Name="modifiedBy" />
+            <PropertyRef Name="modified" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MyTopics" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="topicCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Topics_Audit">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="MyTopics" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="topicCode" />
+            <PropertyRef Name="TopicCreationTime" />
+            <PropertyRef Name="createdBy" />
+            <PropertyRef Name="created" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MyTopics" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="topicCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TopicCreationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserData">
+          <Key>
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="MyTopics" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="createdBy" />
+            <PropertyRef Name="created" />
+            <PropertyRef Name="modifiedBy" />
+            <PropertyRef Name="modified" />
+          </Key>
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MyTopics" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserData_Audit">
+          <Key>
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="MyTopics" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="createdBy" />
+            <PropertyRef Name="created" />
+          </Key>
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MyTopics" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Users_Audit">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="firstName" />
+            <PropertyRef Name="lastName" />
+            <PropertyRef Name="userName" />
+            <PropertyRef Name="SecretId" />
+            <PropertyRef Name="contact" />
+            <PropertyRef Name="LastLoggedin" />
+            <PropertyRef Name="createdBy" />
+            <PropertyRef Name="created" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SecretId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contact" Type="Int32" Nullable="false" />
+          <Property Name="LastLoggedin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="LoginRegistrationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Topics" EntityType="Self.Topic" />
+          <EntitySet Name="Topics_Audit" EntityType="Self.Topics_Audit" />
+          <EntitySet Name="UserDatas" EntityType="Self.UserData" />
+          <EntitySet Name="UserData_Audit" EntityType="Self.UserData_Audit" />
+          <EntitySet Name="Users_Audit" EntityType="Self.Users_Audit" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LoginRegistrationModelStoreContainer" CdmEntityContainer="LoginRegistrationEntities">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="LoginRegistrationModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="SecretId" ColumnName="SecretId" />
+                <ScalarProperty Name="contact" ColumnName="contact" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="LoginRegistrationModel.Topic">
+              <MappingFragment StoreEntitySet="Topics">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MyTopics" ColumnName="MyTopics" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="topicCode" ColumnName="topicCode" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics_Audit">
+            <EntityTypeMapping TypeName="LoginRegistrationModel.Topics_Audit">
+              <MappingFragment StoreEntitySet="Topics_Audit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MyTopics" ColumnName="MyTopics" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="topicCode" ColumnName="topicCode" />
+                <ScalarProperty Name="TopicCreationTime" ColumnName="TopicCreationTime" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="created" ColumnName="created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDatas">
+            <EntityTypeMapping TypeName="LoginRegistrationModel.UserData">
+              <MappingFragment StoreEntitySet="UserData">
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="MyTopics" ColumnName="MyTopics" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserData_Audit">
+            <EntityTypeMapping TypeName="LoginRegistrationModel.UserData_Audit">
+              <MappingFragment StoreEntitySet="UserData_Audit">
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="MyTopics" ColumnName="MyTopics" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="created" ColumnName="created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users_Audit">
+            <EntityTypeMapping TypeName="LoginRegistrationModel.Users_Audit">
+              <MappingFragment StoreEntitySet="Users_Audit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="SecretId" ColumnName="SecretId" />
+                <ScalarProperty Name="contact" ColumnName="contact" />
+                <ScalarProperty Name="LastLoggedin" ColumnName="LastLoggedin" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="created" ColumnName="created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
