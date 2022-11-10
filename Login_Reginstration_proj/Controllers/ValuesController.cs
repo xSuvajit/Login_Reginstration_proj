@@ -7,14 +7,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+
 namespace Login_Reginstration_proj.Controllers
 {
-
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<String> Get()
-        {            
+        public IEnumerable<string> Get()
+        {
             return new string[] { "value1", "value2" };
         }
 
