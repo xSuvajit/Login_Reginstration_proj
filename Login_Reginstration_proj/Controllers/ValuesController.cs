@@ -6,14 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Login_Reginstration_proj.Models;
+//using Login_Reginstration_proj.Models;
 
 namespace Login_Reginstration_proj.Controllers
 {
 
     public class ValuesController : ApiController
     {
-        private HCLEntities obj = new HCLEntities();
+        //private HCLEntities obj = new HCLEntities();
 
        
 
@@ -27,7 +27,7 @@ namespace Login_Reginstration_proj.Controllers
         }
 
         // GET api/values
-        public IEnumerable<Employee> Get()
+        public IEnumerable<string> Get()
         {
             //using (SqlConnection con = new SqlConnection(cons))
             //{
@@ -35,8 +35,9 @@ namespace Login_Reginstration_proj.Controllers
             //    con.Open();
             //}
 
-            con.Open();
-            return obj.Employees.ToList ();
+
+            return new string[] {"Suvajit is Great #Leader#OurBigBrother" };
+                //obj.Employees.ToList ();
         }
 
         // GET api/values/5
