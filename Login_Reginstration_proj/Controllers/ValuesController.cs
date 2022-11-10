@@ -15,10 +15,7 @@ namespace Login_Reginstration_proj.Controllers
     {
         private HCLEntities obj = new HCLEntities();
 
-        //string cs = @"data source=STAR_DUST\SQLEXPRESS;initial catalog=HCL;integrated security=True";
-        //string cons = getConString();
-
-        private SqlConnection con = new SqlConnection(getConString());
+       
 
         private static string getConString()
         {
