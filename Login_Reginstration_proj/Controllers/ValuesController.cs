@@ -6,38 +6,27 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-//using Login_Reginstration_proj.Models;
+
 
 namespace Login_Reginstration_proj.Controllers
 {
 
     public class ValuesController : ApiController
     {
-        //private HCLEntities obj = new HCLEntities();
+       
 
        
 
-        private static string getConString()
-        {
-            using (var streamReader = File.OpenText(@"C:\Connection.txt"))
-            {
-                var lines = streamReader.ReadToEnd();
-                return lines;
-            }
-        }
+        
 
         // GET api/values
         public IEnumerable<string> Get()
         {
-            //using (SqlConnection con = new SqlConnection(cons))
-            //{
-            //    SqlCommand sql = new SqlCommand("select * from Employees", con);
-            //    con.Open();
-            //}
+            
 
 
             return new string[] {"Suvajit is Great #Leader#OurBigBrother" };
-                //obj.Employees.ToList ();
+               
         }
 
         // GET api/values/5
