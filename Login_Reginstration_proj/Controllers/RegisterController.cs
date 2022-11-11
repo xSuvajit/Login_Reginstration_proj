@@ -8,12 +8,12 @@ using Login_Reginstration_proj.DbOperation;
 
 namespace Login_Reginstration_proj.Controllers
 {
-    public class LoginController : Controller
+    public class RegisterController : Controller
     {
         UserOperation userOperation = null;
         ValuesController vc = new ValuesController();
         // GET: Login
-        public LoginController()
+        public RegisterController()
         {
             userOperation = new UserOperation();
         }

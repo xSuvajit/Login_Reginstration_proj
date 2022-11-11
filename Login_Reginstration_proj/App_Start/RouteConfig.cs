@@ -16,7 +16,7 @@ namespace Login_Reginstration_proj
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Login", action = "addUsers", id = UrlParameter.Optional }
+                defaults: new { controller = "Register", action = "addUsers", id = UrlParameter.Optional }
             );
         }
     }
