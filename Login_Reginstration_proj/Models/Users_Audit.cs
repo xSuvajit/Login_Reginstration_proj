@@ -19,7 +19,7 @@ namespace Login_Reginstration_proj.Models
         public string lastName { get; set; }
         public string userName { get; set; }
         public string SecretId { get; set; }
-        public int contact { get; set; }
+        public long contact { get; set; }
         public System.DateTime LastLoggedin { get; set; }
         public string createdBy { get; set; }
         public System.DateTime created { get; set; }

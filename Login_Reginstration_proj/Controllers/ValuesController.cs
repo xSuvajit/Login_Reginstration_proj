@@ -32,19 +32,7 @@ namespace Login_Reginstration_proj.Controllers
         // POST api/values
         public void Post(User u)
         {
-            using(LoginRegistrationEntities db = new LoginRegistrationEntities())
-            {
-                //if(db.Users.Find(u.contact)==null)
-                //{
-                    
-                //    Console.WriteLine("test");
-                //}
-                db.Users.Add(u);
-                db.SaveChanges();
-                    //db.Users.Add(u);
-                //if (db.Users.FirstOrDefault(e=>e.contact==u.contact) == null)
-                    
-            }
+            
         }
 
         // PUT api/values/5

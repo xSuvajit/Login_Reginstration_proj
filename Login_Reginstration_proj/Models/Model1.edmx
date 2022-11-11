@@ -92,7 +92,7 @@ warning 6002: The table/view 'LoginRegistration.dbo.UserData_Audit' does not hav
           <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="SecretId" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="contact" Type="int" Nullable="false" />
+          <Property Name="contact" Type="bigint" Nullable="false" />
           <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="created" Type="datetime" Nullable="false" />
           <Property Name="modifiedBy" Type="varchar" MaxLength="50" Nullable="false" />
@@ -117,7 +117,7 @@ warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a
           <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="SecretId" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="contact" Type="int" Nullable="false" />
+          <Property Name="contact" Type="bigint" Nullable="false" />
           <Property Name="LastLoggedin" Type="datetime" Nullable="false" />
           <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="created" Type="datetime" Nullable="false" />
@@ -195,7 +195,7 @@ warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a
           <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SecretId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="contact" Type="Int32" Nullable="false" />
+          <Property Name="contact" Type="Int64" Nullable="false" />
           <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="modifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -288,12 +288,12 @@ warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a
           <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SecretId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="contact" Type="Int32" Nullable="false" />
+          <Property Name="contact" Type="Int64" Nullable="false" />
           <Property Name="LastLoggedin" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityContainer Name="LoginRegistrationEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LoginRegistrationEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Topics" EntityType="Self.Topic" />
           <EntitySet Name="Topics_Audit" EntityType="Self.Topics_Audit" />
@@ -306,7 +306,7 @@ warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LoginRegistrationModelStoreContainer" CdmEntityContainer="LoginRegistrationEntities">
+        <EntityContainerMapping StorageEntityContainer="LoginRegistrationModelStoreContainer" CdmEntityContainer="LoginRegistrationEntities1">
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="LoginRegistrationModel.User">
               <MappingFragment StoreEntitySet="Users">
