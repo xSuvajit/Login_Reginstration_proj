@@ -36,10 +36,13 @@ namespace Login_Reginstration_proj.Controllers
             {
                 //if(db.Users.Find(u.contact)==null)
                 //{
-                    
+
                 //    Console.WriteLine("test");
                 //}
+                //u.created = DateTime.Now;
+                //u.createdBy = u.userName;
                 db.Users.Add(u);
+            
                 db.SaveChanges();
                     //db.Users.Add(u);
                 //if (db.Users.FirstOrDefault(e=>e.contact==u.contact) == null)

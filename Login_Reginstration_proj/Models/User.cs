@@ -27,9 +27,13 @@ namespace Login_Reginstration_proj.Models
         public string SecretId { get; set; }
         [Required(ErrorMessage = "Can't be blank"), DisplayName("Contact Number")]
         public int contact { get; set; }
+
         public string createdBy { get; set; }
+
         public System.DateTime created { get; set; }
+
         public string modifiedBy { get; set; }
+
         public System.DateTime modified { get; set; }
     }
 }
