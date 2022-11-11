@@ -42,7 +42,7 @@ namespace Login_Reginstration_proj.Controllers
                 }
                 else if(status.Equals("notAdded"))
                 {
-                    ViewBag.info = "data not added";
+                    ViewBag.info = "Something went Wrong!! Please try again!!";
                 }
                 else if (status.Equals("Err_UQ_KEY"))
                 {
