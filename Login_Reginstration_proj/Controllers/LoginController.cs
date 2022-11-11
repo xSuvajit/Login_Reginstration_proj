@@ -34,15 +34,23 @@ namespace Login_Reginstration_proj.Controllers
         {
             if (ModelState.IsValid)
             {
-                int id = userOperation.addUsers(u1);
-                if (id >= 1)
+                string status = userOperation.addUsers(u1);
+                if (status.Equals("added"))
                 {
                     ModelState.Clear();
-                    ViewBag.info = "data added";
+                    ViewBag.info = "Registration Successfull!!";
                 }
-                else
+                else if(status.Equals("notAdded"))
                 {
                     ViewBag.info = "data not added";
+                }
+                else if (status.Equals("Err_UQ_KEY"))
+                {
+                    ViewBag.info = "UserName is not Availeble! Please provide a unique UserName!";
+                }
+                else if (status.Equals("Err_PK_KEY"))
+                {
+                    ViewBag.info = "User is already registered!";
                 }
             }
             return View();
