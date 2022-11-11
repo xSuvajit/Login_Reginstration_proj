@@ -23,8 +23,11 @@ namespace Login_Reginstration_proj.Models
         public string SecretId { get; set; }
         public long contact { get; set; }
         public string createdBy { get; set; }
+
         public System.DateTime created { get; set; }
+
         public string modifiedBy { get; set; }
+
         public System.DateTime modified { get; set; }
     }
 }
