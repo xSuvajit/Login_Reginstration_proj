@@ -22,6 +22,19 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                            {
+                                <li><a>Welcome---> @User.Identity.Name</a></li>
+                                <li>@Html.ActionLink("Logout", "logout", "Login")</li>
+                            }
+                        else
+                            {
+                                <li>Not logged in</li>
+                            }
+                    }
+
                 </ul>
             </div>
         </div>

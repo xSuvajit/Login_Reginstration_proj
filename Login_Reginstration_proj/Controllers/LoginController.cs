@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Login_Reginstration_proj.DbOperation;
+using System.Web.Security;
 
 namespace Login_Reginstration_proj.Controllers
 {
@@ -23,12 +24,13 @@ namespace Login_Reginstration_proj.Controllers
 
         [HttpPost]
         public ActionResult login(User u1)
-        {
-           
+        {          
             bool isLogin = userOperation.login(u1);
             if (isLogin)
             {
-                ViewBag.info = "Logged in work";
+                FormsAuthentication.SetAuthCookie(u1.userName.ToString(), false);
+                //ViewBag.info = "Logged in work";
+                return RedirectToAction("userTopics", "Topics");
             }
             else
             {
@@ -38,6 +40,11 @@ namespace Login_Reginstration_proj.Controllers
             return View();
         }
 
+        public ActionResult logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("login");
+        }
 
     }
 }

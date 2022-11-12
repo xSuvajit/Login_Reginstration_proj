@@ -66,8 +66,6 @@ namespace Login_Reginstration_proj.DbOperation
                         return isLogin;
                     }
                 }
-
-
             
         }
 
