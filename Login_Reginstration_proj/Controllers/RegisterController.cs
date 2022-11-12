@@ -18,12 +18,6 @@ namespace Login_Reginstration_proj.Controllers
             userOperation = new UserOperation();
         }
 
-        public ActionResult Add()
-        {
-            User user = vc.Get(9876);
-            return View(user);
-        }
-
         public ActionResult addUsers()
         {
             return View();
