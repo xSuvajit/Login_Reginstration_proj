@@ -49,5 +49,27 @@ namespace Login_Reginstration_proj.DbOperation
             return "notAdded";
         }
 
+        public bool login(User user)
+        {
+            bool isLogin = false;          
+                using(var context = new LoginRegistrationEntities())
+                {
+                    bool isValidUser = context.Users.Any(x => x.userName == user.userName && x.SecretId == user.SecretId);
+                    if (isValidUser)
+                    {
+                        isLogin = true;
+                        return isLogin;
+                    }
+                    else
+                    {
+                        isLogin = false;
+                        return isLogin;
+                    }
+                }
+
+
+            
+        }
+
     }
 }
