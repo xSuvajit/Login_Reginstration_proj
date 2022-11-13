@@ -28,7 +28,30 @@ namespace Login_Reginstration_proj.Controllers
             }
                
         }
-
+        //public HttpResponseMessage getUserDetails(string userName = "All")
+        //{
+        //    using (var context = new LoginRegistrationEntities())
+        //    {
+        //        switch (userName.ToLower())
+        //        {
+        //            case "faizahmef":
+        //                return Request.CreateResponse
+        //                     (HttpStatusCode.OK,
+        //                     context.Users.Where
+        //                     (s => s.userName.ToLower() == "faizahmef").
+        //                     ToList());
+        //            //            Select ( s => new User ()
+        //            //{
+        //            //    firstName = s.firstName,
+        //            //    lastName = s.lastName,
+        //            //    userName = s.userName,
+        //            //    SecretId = s.SecretId
+        //            //} ).FirstOrDefault ();
+        //            //return user;
+        //            default: return Request.CreateResponse(HttpStatusCode.BadRequest, "Not Valid");
+        //        }
+        //    }
+        //}
         // POST api/values
         public void Post(User u)
         {

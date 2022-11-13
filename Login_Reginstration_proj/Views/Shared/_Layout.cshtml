@@ -28,9 +28,12 @@
                             {
                                 <li><a>Welcome---> @User.Identity.Name</a></li>
                                 <li>@Html.ActionLink("Logout", "logout", "Login")</li>
-                            }
+                                string id = @User.Identity.Name.ToString();
+                                <li>@Html.ActionLink("Update profile data","edit",new { id})</li>
+                                
+                        }
                         else
-                            {
+                        {
                                 <li>Not logged in</li>
                             }
                     }

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
+
 namespace Login_Reginstration_proj.DbOperation
 {
     public class UserOperation
@@ -67,6 +68,59 @@ namespace Login_Reginstration_proj.DbOperation
                     }
                 }
             
+        }
+
+        //public User getUserDetails(string userName)
+        //{
+        //    using(var context=new LoginRegistrationEntities())
+        //    {
+        //        User user = context.Users.Where(s => s.userName.Equals(userName)).Select(s => new User()
+        //        {
+        //            firstName = s.firstName,
+        //            lastName = s.lastName,
+        //            userName = s.userName,
+        //            SecretId = s.SecretId
+        //        }).FirstOrDefault();
+        //        return user;
+        //    }
+        //}
+
+        public string edit(string userName,User user)
+        {
+            try
+            {
+                using (var context = new LoginRegistrationEntities())
+                {
+                    var result = context.Users.FirstOrDefault(x => x.userName.Equals(userName));
+                    if (result != null)
+                    {
+                        result.firstName = user.firstName;
+                        result.lastName = user.lastName;                   
+                        if (!user.userName.Equals(result.userName))
+                        {
+                            result.userName = user.userName;
+                        }                        
+                        result.SecretId = user.SecretId;
+                        //result.contact = user.contact;
+                        result.createdBy = result.userName;
+                        result.created = DateTime.Now;
+                        result.modifiedBy = result.userName;
+                        result.modified = DateTime.Now;
+                        context.SaveChanges();
+                        return "updated";
+                    }                    
+                }
+            }
+            catch(DbUpdateException ex)
+            {
+                string msg = ex.InnerException.InnerException.Message;
+                if (msg.Contains("UNIQUE KEY"))
+                {
+                    return "Err_UQ_KEY";
+                }
+                
+            }
+            return "not updated";
         }
 
     }

@@ -46,5 +46,7 @@ namespace Login_Reginstration_proj.Controllers
             return RedirectToAction("login");
         }
 
+        
+
     }
 }

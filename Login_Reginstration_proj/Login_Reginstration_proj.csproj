@@ -274,6 +274,7 @@
     <Content Include="Views\Register\addUsers.cshtml" />
     <Content Include="Views\Login\login.cshtml" />
     <Content Include="Views\Topics\userTopics.cshtml" />
+    <Content Include="Views\Topics\edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
