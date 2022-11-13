@@ -42,16 +42,17 @@ namespace Login_Reginstration_proj.Controllers
         //    return View();
         //}
 
-        public ActionResult edit()
+        public ActionResult edit(string name)
         {
-            return View();
+            User obj1 = userOperation.getUserDetails(name);
+            return View(obj1);
         }
 
         [HttpPost]
-        public ActionResult edit(string id, User userModel)
+        public ActionResult edit(string name, User userModel)
         {
             
-            string check = userOperation.edit(id, userModel);
+            string check = userOperation.edit(name, userModel);
             if (check.Equals("updated"))
             {
                 ViewBag.info = "details updated";

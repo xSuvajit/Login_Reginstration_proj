@@ -26,16 +26,21 @@
                     @{
                         if (User.Identity.IsAuthenticated)
                             {
-                                <li><a>Welcome---> @User.Identity.Name</a></li>
+                                //<li><a>Welcome---> @User.Identity.Name</a></li>
+                                <li><a>Welcome @ViewBag.name</a></li>
+                                
+                                
                                 <li>@Html.ActionLink("Logout", "logout", "Login")</li>
-                                string id = @User.Identity.Name.ToString();
-                                <li>@Html.ActionLink("Update profile data","edit",new { id})</li>
+                                string name = @User.Identity.Name.ToString();
+                                <li>@Html.ActionLink("Update profile data","edit",new { name})</li>
+
+                            
                                 
                         }
                         else
                         {
                                 <li>Not logged in</li>
-                            }
+                        }
                     }
 
                 </ul>

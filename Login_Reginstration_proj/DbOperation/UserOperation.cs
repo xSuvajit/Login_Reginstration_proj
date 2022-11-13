@@ -70,20 +70,21 @@ namespace Login_Reginstration_proj.DbOperation
             
         }
 
-        //public User getUserDetails(string userName)
-        //{
-        //    using(var context=new LoginRegistrationEntities())
-        //    {
-        //        User user = context.Users.Where(s => s.userName.Equals(userName)).Select(s => new User()
-        //        {
-        //            firstName = s.firstName,
-        //            lastName = s.lastName,
-        //            userName = s.userName,
-        //            SecretId = s.SecretId
-        //        }).FirstOrDefault();
-        //        return user;
-        //    }
-        //}
+        public User getUserDetails(string userName)
+        {
+            using (var context = new LoginRegistrationEntities())
+            {
+                User user = context.Users.FirstOrDefault(s => s.userName.Equals(userName));
+                //Select(s => new User()
+                //{
+                //    firstName = s.firstName,
+                //    lastName = s.lastName,
+                //    userName = s.userName,
+                //    SecretId = s.SecretId
+                //}).FirstOrDefault();
+                return user;
+            }
+        }
 
         public string edit(string userName,User user)
         {

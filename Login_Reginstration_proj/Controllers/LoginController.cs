@@ -24,12 +24,25 @@ namespace Login_Reginstration_proj.Controllers
 
         [HttpPost]
         public ActionResult login(User u1)
-        {          
+        {
+            string name = "";
             bool isLogin = userOperation.login(u1);
             if (isLogin)
             {
                 FormsAuthentication.SetAuthCookie(u1.userName.ToString(), false);
                 //ViewBag.info = "Logged in work";
+                
+                using (var context = new LoginRegistrationEntities())
+                {
+                    User u = context.Users.FirstOrDefault(x => x.userName.Equals(u1.userName));
+                    if (u != null)
+                    {
+                        name = u.firstName + " " + u.lastName;
+
+                    }
+                    ViewBag.name = name;
+                }
+                //ViewBag.name = name;
                 return RedirectToAction("userTopics", "Topics");
             }
             else
