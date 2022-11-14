@@ -52,21 +52,20 @@ namespace Login_Reginstration_proj.DbOperation
         public bool login(User user)
         {
             bool isLogin = false;          
-                using(var context = new LoginRegistrationEntities())
+            using(var context = new LoginRegistrationEntities())
+            {
+                bool isValidUser = context.Users.Any(x => x.userName == user.userName && x.SecretId == user.SecretId);
+                if (isValidUser)
                 {
-                    bool isValidUser = context.Users.Any(x => x.userName == user.userName && x.SecretId == user.SecretId);
-                    if (isValidUser)
-                    {
-                        isLogin = true;
-                        return isLogin;
-                    }
-                    else
-                    {
-                        isLogin = false;
-                        return isLogin;
-                    }
+                    isLogin = true;
+                    return isLogin;
                 }
-            
+                else
+                {
+                    isLogin = false;
+                    return isLogin;
+                }
+            }            
         }
 
         public User getUserDetails(string userName)
@@ -74,13 +73,6 @@ namespace Login_Reginstration_proj.DbOperation
             using (var context = new LoginRegistrationEntities())
             {
                 User user = context.Users.FirstOrDefault(s => s.userName.Equals(userName));
-                //Select(s => new User()
-                //{
-                //    firstName = s.firstName,
-                //    lastName = s.lastName,
-                //    userName = s.userName,
-                //    SecretId = s.SecretId
-                //}).FirstOrDefault();
                 return user;
             }
         }
@@ -99,11 +91,8 @@ namespace Login_Reginstration_proj.DbOperation
                         if (!user.userName.Equals(result.userName))
                         {
                             result.userName = user.userName;
-                        }                        
+                        } 
                         result.SecretId = user.SecretId;
-                        //result.contact = user.contact;
-                        result.createdBy = result.userName;
-                        result.created = DateTime.Now;
                         result.modifiedBy = result.userName;
                         result.modified = DateTime.Now;
                         context.SaveChanges();

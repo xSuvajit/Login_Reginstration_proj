@@ -22,25 +22,21 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                    
                     @{
                         if (User.Identity.IsAuthenticated)
-                            {
-                                //<li><a>Welcome---> @User.Identity.Name</a></li>
-                                <li><a>Welcome @ViewBag.name</a></li>
-                                
-                                
-                                <li>@Html.ActionLink("Logout", "logout", "Login")</li>
-                                string name = @User.Identity.Name.ToString();
-                                <li>@Html.ActionLink("Update profile data","edit",new { name})</li>
-
-                            
-                                
-                        }
-                        else
                         {
-                                <li>Not logged in</li>
+                            <li><a>Welcome @TempData["name"]</a></li>
+                            <li>@Html.ActionLink("Logout", "logout", "Login")</li>
+                            string name = @User.Identity.Name.ToString();
+                            <li>@Html.ActionLink("Update profile data", "edit", new { name })</li>
+
+                            //<li>@Html.DisplayText(@TempData["lastLogIn"].ToString())</li>
+
                         }
+                        @*else
+            {
+                    <li>Not logged in</li>
+            }*@
                     }
 
                 </ul>

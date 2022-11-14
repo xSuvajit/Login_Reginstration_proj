@@ -55,6 +55,15 @@ namespace Login_Reginstration_proj.Controllers
             string check = userOperation.edit(name, userModel);
             if (check.Equals("updated"))
             {
+                using (var context = new LoginRegistrationEntities())
+                {
+                    User u = context.Users.FirstOrDefault(x => x.userName.Equals(userModel.userName));
+                    if (u != null)
+                    {
+                        name = u.firstName + " " + u.lastName;
+                    }
+                    TempData["name"] = name;
+                }
                 ViewBag.info = "details updated";
             }
             else if (check.Equals("not updated"))
