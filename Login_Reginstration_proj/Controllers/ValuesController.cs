@@ -1,6 +1,8 @@
 ﻿using Login_Reginstration_proj.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -53,44 +55,50 @@ namespace Login_Reginstration_proj.Controllers
         //    }
         //}
         // POST api/values
-        public HttpResponseMessage Put ([FromBody]string username,User u)
+        public User Put ([FromBody]string username,User u)
         {
-            using (LoginRegistrationEntities db = new LoginRegistrationEntities ())
+            try
             {
-                var entity=db.Users.FirstOrDefault ( e => e.userName.Equals ( username ) );
-                if (entity != null)
+                using (LoginRegistrationEntities db = new LoginRegistrationEntities())
                 {
-                    entity.firstName = u.firstName;
-                    entity.lastName = u.lastName;
-                    if (!entity.userName.Equals ( u.userName ))
+                    var entity = db.Users.FirstOrDefault(e => e.userName.Equals(username));
+                    if (entity != null)
                     {
-                        entity.userName = u.userName;
+                        entity.firstName = u.firstName;
+                        entity.lastName = u.lastName;
+                        if (!entity.userName.Equals(u.userName))
+                        {
+                            entity.userName = u.userName;
+                        }
+                        entity.SecretId = u.SecretId;
+                        entity.modified = DateTime.Now;
+                        entity.modifiedBy = u.userName;
+                        entity.createdBy = u.userName;
+                        db.SaveChanges();
+                        return entity;
                     }
-                    entity.SecretId = u.SecretId;
-                    if (entity.contact != u.contact)
-                    {
-                        entity.contact = u.contact;
-                    }
-                    
-                    db.SaveChanges ();
-                    return Request.CreateResponse ( HttpStatusCode.OK, entity ); 
-                       
-
+                    else
+                        return null;
                 }
-                else
-                    return Request.CreateResponse ( HttpStatusCode.NotFound );
             }
-            
-        }
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody] string value)
-        {
+            catch (DbEntityValidationException ex)
+            {
+                throw;                
+            }
         }
 
         // DELETE api/values/5
-        public void Delete(int id)
+        public void Delete(string name)
         {
+            using (LoginRegistrationEntities db = new LoginRegistrationEntities())
+            {
+                var entity = db.Users.FirstOrDefault(e => e.userName.Equals(name));
+                if (entity != null)
+                {
+                    db.Users.Remove(entity);
+                    db.SaveChanges();
+                }
+            }
         }
     }
 }

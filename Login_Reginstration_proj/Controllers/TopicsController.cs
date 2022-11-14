@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -51,35 +53,81 @@ namespace Login_Reginstration_proj.Controllers
         [HttpPost]
         public ActionResult edit(string name, User userModel)
         {
-            
-            string check = userOperation.edit(name, userModel);
-            if (check.Equals("updated"))
+            try
             {
-                using (var context = new LoginRegistrationEntities())
+                ValuesController vc = new ValuesController();
+                User u1 = vc.Put(name, userModel);
+                if (u1 != null)
                 {
-                    User u = context.Users.FirstOrDefault(x => x.userName.Equals(userModel.userName));
-                    if (u != null)
-                    {
-                        name = u.firstName + " " + u.lastName;
-                    }
-                    TempData["name"] = name;
+                    TempData["name"] = u1.firstName + " " + u1.lastName;
+                    return View("userTopics");
                 }
-                ViewBag.info = "details updated";
+                else
+                {
+                   ViewBag.info= "cannot update data";
+                    return View();
+                }
             }
-            else if (check.Equals("not updated"))
+            catch (DbUpdateException ex)
             {
-                ViewBag.info = "details not updated";
+                string msg = ex.InnerException.InnerException.Message;
+                if (msg.Contains("UNIQUE KEY"))
+                {
+                    ViewBag.info="UserName is not Availeble! Please provide a unique UserName!";
+                    return View();
+                }
+                else
+                {
+                    ViewBag.info = "Some thing went wrong!";
+                    return View();
+                }
             }
-            else if (check.Equals("Err_UQ_KEY"))
+            catch(DbEntityValidationException ex)
             {
-                ViewBag.info = "User name is already there ";
+                //ViewBag.info = "Field cant be blank! Please fill all the data!";
+                return View();
             }
-            else if (check.Equals("Err_PK_KEY"))
-            {
-                ViewBag.info = "User is already registered!";
-            }
-           
-            return View("userTopics");
+
+            //my code
+
+            //string check = userOperation.edit(name, userModel);
+            //if (check.Equals("updated"))
+            //{
+            //    using (var context = new LoginRegistrationEntities())
+            //    {
+            //        User u = context.Users.FirstOrDefault(x => x.userName.Equals(userModel.userName));
+            //        if (u != null)
+            //        {
+            //            name = u.firstName + " " + u.lastName;
+            //        }
+            //        TempData["name"] = name;
+            //    }
+            //    ViewBag.info = "details updated";
+            //}
+            //else if (check.Equals("not updated"))
+            //{
+            //    ViewBag.info = "details not updated";
+            //}
+            //else if (check.Equals("Err_UQ_KEY"))
+            //{
+            //    ViewBag.info = "User name is already there ";
+            //}
+            //else if (check.Equals("Err_PK_KEY"))
+            //{
+            //    ViewBag.info = "User is already registered!";
+            //}
+
+            //return View("userTopics");
         }
+
+
+        [HttpDelete]
+        public void delete(string name)
+        {
+            ValuesController vc = new ValuesController();
+            vc.Delete(name);
+        }
+
+
     }
 }
