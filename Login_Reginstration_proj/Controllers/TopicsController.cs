@@ -120,12 +120,20 @@ namespace Login_Reginstration_proj.Controllers
             //return View("userTopics");
         }
 
-
-        [HttpDelete]
-        public void delete(string name)
+        [HttpPost]
+        public ActionResult delete(string name)
         {
             ValuesController vc = new ValuesController();
-            vc.Delete(name);
+            TempData["name"] = name;
+            if (vc.Delete(name))
+            {
+                return View("login");
+            }
+            else 
+            {
+                ViewBag.info = "Not Deleted!";
+                return View("userTopics");
+            }
         }
 
 

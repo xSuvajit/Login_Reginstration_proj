@@ -88,7 +88,7 @@ namespace Login_Reginstration_proj.Controllers
         }
 
         // DELETE api/values/5
-        public void Delete(string name)
+        public bool Delete([FromBody]string name)
         {
             using (LoginRegistrationEntities db = new LoginRegistrationEntities())
             {
@@ -97,7 +97,10 @@ namespace Login_Reginstration_proj.Controllers
                 {
                     db.Users.Remove(entity);
                     db.SaveChanges();
+                    return true;
                 }
+                else
+                    return false;
             }
         }
     }
