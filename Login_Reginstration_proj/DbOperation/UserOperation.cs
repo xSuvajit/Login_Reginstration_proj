@@ -30,18 +30,6 @@ namespace Login_Reginstration_proj.DbOperation
                         modified = DateTime.Now
                     };
                     context.Users.Add(user);
-                    //Users_Audit userData_Audit = new Users_Audit()
-                    //{
-                    //    firstName = userModel.firstName,
-                    //    lastName = userModel.lastName,
-                    //    userName = userModel.userName,
-                    //    SecretId = userModel.SecretId,
-                    //    contact = userModel.contact,
-                    //    createdBy = userModel.userName,
-                    //    created = DateTime.Now,
-                    //    LastLoggedin = DateTime.Now
-                    //};
-                    //context.Users_Audit.Add(userData_Audit);
                     context.SaveChanges();
                     return "added";
                 }
