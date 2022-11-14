@@ -81,7 +81,7 @@ namespace Login_Reginstration_proj.Controllers
             }
         }
 
-        public void addTopics(out List<int> ids, out List<string> topics)
+        public void AddTopics(out List<int> ids, out List<string> topics)
         {
             ids = new List<int>();
             topics = new List<string>();

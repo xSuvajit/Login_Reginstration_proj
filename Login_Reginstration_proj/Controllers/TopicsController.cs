@@ -110,7 +110,7 @@ namespace Login_Reginstration_proj.Controllers
             ValuesController vc = new ValuesController();
             List<int> ids = new List<int>();
             List<string> topics = new List<string>();
-            vc.addTopics(out ids, out topics);
+            vc.AddTopics(out ids, out topics);
             ViewBag.ids = ids;
             ViewBag.topics = topics;
             return View();           
