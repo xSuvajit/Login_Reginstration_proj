@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Login_Reginstration_proj.Models.Topic>
 
+
 @{
     ViewBag.Title = "addTopics";
 }
@@ -12,14 +13,12 @@
 <table class="table">
     <tr>
         <th></th>
+        <td>Topics</td>        
+    </tr>
+    <tr>
+        <td>@Html.DisplayName("Topic names:- ")</td>
+        <td>@Html.DropDownList("MyTopics", new SelectList(ViewBag.topics, ViewBag.ids))</td>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Status }) 
-        </td>
-    </tr>
-}
 
 </table>

@@ -107,17 +107,13 @@ namespace Login_Reginstration_proj.Controllers
         [HttpGet]
         public ActionResult addTopics()
         {
-            List<string> MyTopicList=new List<string>();
-            using (LoginRegistrationEntities db = new LoginRegistrationEntities())
-            {
-                foreach(Topic tpk in db.Topics.AsEnumerable())
-                {
-                    MyTopicList.Add(tpk.MyTopics);
-                }
-            }
-            return View();
+            ValuesController vc = new ValuesController();
+            List<int> ids = new List<int>();
+            List<string> topics = new List<string>();
+            vc.addTopics(out ids, out topics);
+            ViewBag.ids = ids;
+            ViewBag.topics = topics;
+            return View();           
         }
-
-
     }
 }

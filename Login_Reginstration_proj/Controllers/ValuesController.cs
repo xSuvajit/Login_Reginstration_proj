@@ -80,5 +80,23 @@ namespace Login_Reginstration_proj.Controllers
                     return false;
             }
         }
+
+        public void addTopics(out List<int> ids, out List<string> topics)
+        {
+            ids = new List<int>();
+            topics = new List<string>();
+            int id;
+            string topic;
+            using (LoginRegistrationEntities db = new LoginRegistrationEntities())
+            {
+                foreach(var item in db.Topics.AsEnumerable())
+                {
+                    id = item.Id;
+                    topic = item.MyTopics;
+                    ids.Add(id);
+                    topics.Add(topic);
+                }
+            }
+        }
     }
 }
