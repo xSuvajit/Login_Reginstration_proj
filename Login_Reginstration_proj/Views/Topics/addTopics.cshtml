@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Login_Reginstration_proj.Models.Topic>
+
+@{
+    ViewBag.Title = "addTopics";
+}
+
+<h2>addTopics</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Status }) 
+        </td>
+    </tr>
+}
+
+</table>

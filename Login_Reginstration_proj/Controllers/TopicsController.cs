@@ -78,49 +78,17 @@ namespace Login_Reginstration_proj.Controllers
                 }
                 else
                 {
-                    ViewBag.info = "Some thing went wrong!";
+                    ViewBag.info = "Something went wrong!";
                     return View();
                 }
             }
-            catch(DbEntityValidationException ex)
+            catch(DbEntityValidationException)
             {
-                //ViewBag.info = "Field cant be blank! Please fill all the data!";
                 return View();
             }
-
-            //my code
-
-            //string check = userOperation.edit(name, userModel);
-            //if (check.Equals("updated"))
-            //{
-            //    using (var context = new LoginRegistrationEntities())
-            //    {
-            //        User u = context.Users.FirstOrDefault(x => x.userName.Equals(userModel.userName));
-            //        if (u != null)
-            //        {
-            //            name = u.firstName + " " + u.lastName;
-            //        }
-            //        TempData["name"] = name;
-            //    }
-            //    ViewBag.info = "details updated";
-            //}
-            //else if (check.Equals("not updated"))
-            //{
-            //    ViewBag.info = "details not updated";
-            //}
-            //else if (check.Equals("Err_UQ_KEY"))
-            //{
-            //    ViewBag.info = "User name is already there ";
-            //}
-            //else if (check.Equals("Err_PK_KEY"))
-            //{
-            //    ViewBag.info = "User is already registered!";
-            //}
-
-            //return View("userTopics");
         }
 
-        [HttpPost]
+        [HttpDelete]
         public ActionResult delete(string name)
         {
             ValuesController vc = new ValuesController();
@@ -134,6 +102,20 @@ namespace Login_Reginstration_proj.Controllers
                 ViewBag.info = "Not Deleted!";
                 return View("userTopics");
             }
+        }
+
+        [HttpGet]
+        public ActionResult addTopics()
+        {
+            List<string> MyTopicList=new List<string>();
+            using (LoginRegistrationEntities db = new LoginRegistrationEntities())
+            {
+                foreach(Topic tpk in db.Topics.AsEnumerable())
+                {
+                    MyTopicList.Add(tpk.MyTopics);
+                }
+            }
+            return View();
         }
 
 

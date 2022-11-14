@@ -273,8 +273,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Register\addUsers.cshtml" />
     <Content Include="Views\Login\login.cshtml" />
-    <Content Include="Views\Topics\userTopics.cshtml" />
     <Content Include="Views\Topics\edit.cshtml" />
+    <Content Include="Views\Topics\userTopics.cshtml" />
+    <Content Include="Views\Topics\addTopics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
