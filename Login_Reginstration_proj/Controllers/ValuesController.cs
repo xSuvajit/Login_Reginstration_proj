@@ -53,7 +53,7 @@ namespace Login_Reginstration_proj.Controllers
         //    }
         //}
         // POST api/values
-        public HttpResponseMessage Put ([FromBody]string username,User u)
+        public User Put ([FromBody]string username,User u)
         {
             using (LoginRegistrationEntities db = new LoginRegistrationEntities ())
             {
@@ -62,23 +62,22 @@ namespace Login_Reginstration_proj.Controllers
                 {
                     entity.firstName = u.firstName;
                     entity.lastName = u.lastName;
-                    if (!entity.userName.Equals ( u.userName ))
+                    if (!entity.userName.Equals(u.userName))
                     {
                         entity.userName = u.userName;
                     }
                     entity.SecretId = u.SecretId;
-                    if (entity.contact != u.contact)
-                    {
-                        entity.contact = u.contact;
-                    }
-                    
-                    db.SaveChanges ();
-                    return Request.CreateResponse ( HttpStatusCode.OK, entity ); 
-                       
+                    //if (entity.contact != u.contact)
+                    //{
+                    //    entity.contact = u.contact;
+                    //}
+
+                    db.SaveChanges();
+                    return entity;
 
                 }
                 else
-                    return Request.CreateResponse ( HttpStatusCode.NotFound );
+                    return null;
             }
             
         }

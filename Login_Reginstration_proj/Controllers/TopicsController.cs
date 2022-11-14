@@ -51,35 +51,50 @@ namespace Login_Reginstration_proj.Controllers
         [HttpPost]
         public ActionResult edit(string name, User userModel)
         {
-            
-            string check = userOperation.edit(name, userModel);
-            if (check.Equals("updated"))
+
+            // faizal webapii
+            ValuesController vc = new ValuesController();
+            User u1= vc.Put(name, userModel);
+            if (u1 != null)
             {
-                using (var context = new LoginRegistrationEntities())
-                {
-                    User u = context.Users.FirstOrDefault(x => x.userName.Equals(userModel.userName));
-                    if (u != null)
-                    {
-                        name = u.firstName + " " + u.lastName;
-                    }
-                    TempData["name"] = name;
-                }
-                ViewBag.info = "details updated";
+                return View("userTopics");
             }
-            else if (check.Equals("not updated"))
+            else
             {
-                ViewBag.info = "details not updated";
+                ModelState.AddModelError("", "cannot update data");
+                return View();
             }
-            else if (check.Equals("Err_UQ_KEY"))
-            {
-                ViewBag.info = "User name is already there ";
-            }
-            else if (check.Equals("Err_PK_KEY"))
-            {
-                ViewBag.info = "User is already registered!";
-            }
-           
-            return View("userTopics");
+
+            //my code
+
+            //string check = userOperation.edit(name, userModel);
+            //if (check.Equals("updated"))
+            //{
+            //    using (var context = new LoginRegistrationEntities())
+            //    {
+            //        User u = context.Users.FirstOrDefault(x => x.userName.Equals(userModel.userName));
+            //        if (u != null)
+            //        {
+            //            name = u.firstName + " " + u.lastName;
+            //        }
+            //        TempData["name"] = name;
+            //    }
+            //    ViewBag.info = "details updated";
+            //}
+            //else if (check.Equals("not updated"))
+            //{
+            //    ViewBag.info = "details not updated";
+            //}
+            //else if (check.Equals("Err_UQ_KEY"))
+            //{
+            //    ViewBag.info = "User name is already there ";
+            //}
+            //else if (check.Equals("Err_PK_KEY"))
+            //{
+            //    ViewBag.info = "User is already registered!";
+            //}
+
+            //return View("userTopics");
         }
     }
 }
