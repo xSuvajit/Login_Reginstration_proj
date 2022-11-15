@@ -43,6 +43,9 @@ namespace Login_Reginstration_proj.Controllers
         //    return View();
         //}
 
+        
+
+
         public ActionResult edit(string name)
         {
             User obj1 = userOperation.getUserDetails(name);
@@ -88,21 +91,21 @@ namespace Login_Reginstration_proj.Controllers
             }
         }
 
-        [HttpDelete]
-        public ActionResult delete(string name)
-        {
-            ValuesController vc = new ValuesController();
-            TempData["name"] = name;
-            if (vc.Delete(name))
-            {
-                return View("login");
-            }
-            else 
-            {
-                ViewBag.info = "Not Deleted!";
-                return View("userTopics");
-            }
-        }
+        //[HttpDelete]
+        //public ActionResult delete(string name)
+        //{
+        //    ValuesController vc = new ValuesController();
+        //    TempData["name"] = name;
+        //    if (vc.Delete(name))
+        //    {
+        //        return View("login");
+        //    }
+        //    else 
+        //    {
+        //        ViewBag.info = "Not Deleted!";
+        //        return View("userTopics");
+        //    }
+        //}
 
         [HttpGet]
         public ActionResult addTopics()

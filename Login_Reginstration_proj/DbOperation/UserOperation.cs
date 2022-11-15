@@ -112,5 +112,24 @@ namespace Login_Reginstration_proj.DbOperation
             return "not updated";
         }
 
+        public bool deleteUser(string username)
+        {
+            using (var context = new LoginRegistrationEntities())
+            {
+                var result = context.Users.FirstOrDefault(x => x.userName.Equals(username));
+                if (result != null)
+                {
+                    context.Users.Remove(result);
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+        }
+
     }
 }
