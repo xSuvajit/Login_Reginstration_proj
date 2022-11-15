@@ -6,20 +6,27 @@
 }
 
 <h2>addTopics</h2>
+@using (Html.BeginForm("Save", "Topics"))
+{
+    <table class="table">
+        <tr>
+            <th></th>
+            <td>Topics</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayName("Topic names:- ")</td>
+            <td>@Html.DropDownList("MyTopics", new SelectList(ViewBag.topics, ViewBag.ids), "Select")</td>
+            <td>
+                <input type="submit" name="Save" value="Save" />                
+            </td>
+        </tr>
+        @*<tr>
+            @foreach(var item in Model)
+                {
+                    <td>@item.MyTopics</td>
+                }
+        </tr>*@
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th></th>
-        <td>Topics</td>        
-    </tr>
-    <tr>
-        <td>@Html.DisplayName("Topic names:- ")</td>
-        <td>@Html.DropDownList("MyTopics", new SelectList(ViewBag.topics, ViewBag.ids))</td>
-        <td><input type="submit" name="Save" value="Save" /></td>
-    </tr>
 
-
-</table>
+    </table>
+}

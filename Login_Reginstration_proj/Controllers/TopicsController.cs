@@ -9,8 +9,7 @@ using Login_Reginstration_proj.DbOperation;
 using Login_Reginstration_proj.Models;
 
 namespace Login_Reginstration_proj.Controllers
-{
-
+{    
     [Authorize]
     public class TopicsController : Controller
     {
@@ -47,6 +46,7 @@ namespace Login_Reginstration_proj.Controllers
         public ActionResult edit(string name)
         {
             User obj1 = userOperation.getUserDetails(name);
+            TempData["CurrentUserName"] = obj1.userName;
             return View(obj1);
         }
 
@@ -114,6 +114,16 @@ namespace Login_Reginstration_proj.Controllers
             ViewBag.ids = ids;
             ViewBag.topics = topics;
             return View();           
+        }
+
+        public void Save()
+        {
+            string data = Request.Form["MyTopics"].ToString();
+            Int32.TryParse(data,out int selectedId);
+            ValuesController vc = new ValuesController();
+            string data1 = TempData["CurrentUserName"].ToString();
+            vc.SaveTopic(selectedId, data1);
+            
         }
     }
 }

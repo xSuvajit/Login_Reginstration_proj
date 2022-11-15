@@ -98,5 +98,14 @@ namespace Login_Reginstration_proj.Controllers
                 }
             }
         }
+
+        public void SaveTopic(int id,string username)
+        {
+            using (LoginRegistrationEntities db = new LoginRegistrationEntities())
+            {
+                Topic tc = db.Topics.FirstOrDefault(t => t.Id == id);
+                User usr = db.Users.FirstOrDefault(u => u.userName.Equals(username));                
+            }            
+        }
     }
 }
