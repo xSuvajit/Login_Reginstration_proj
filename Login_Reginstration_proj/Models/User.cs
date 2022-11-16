@@ -34,6 +34,8 @@ namespace Login_Reginstration_proj.Models
 
         [Required(ErrorMessage = "Can't be blank"), DisplayName("Contact Number")]
         public long contact { get; set; }
+
+
         public string createdBy { get; set; }
         public System.DateTime created { get; set; }
         public string modifiedBy { get; set; }

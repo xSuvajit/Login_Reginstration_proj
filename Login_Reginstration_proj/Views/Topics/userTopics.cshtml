@@ -36,23 +36,31 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Add or Edit Topics", "addTopics")
+    @Html.ActionLink("Add Topics", "addTopics")
 </p>
 
-<table>
+<table class="table">
+    <tr>
+        <td><b>Topic Name</b></td>
+        <td><b>Status</b></td>
+    </tr>
     @foreach (var item in ViewBag.UserTopics)
     {
         using (Html.BeginForm("EditStatusTopic", "Topics"))
         {
             <tr>
                 <td>
-                    @item.MyTopics |
-                    @item.Status |
-                    <input type="submit" name="name" value="Edit" />   
-                    <hr />
+                    @item.MyTopics
+                </td>
+                <td>
+                    @item.Status
+                </td>
+                <td>
+                    <input type="submit" name="name" value="Edit Status" />
                 </td>
             </tr>
-            
+
         }
     }
-    </table>
+</table>
+<td>@Session["info"]</td>

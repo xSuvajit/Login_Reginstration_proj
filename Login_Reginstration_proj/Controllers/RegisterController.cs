@@ -32,19 +32,19 @@ namespace Login_Reginstration_proj.Controllers
                 if (status.Equals("added"))
                 {
                     ModelState.Clear();
-                    ViewBag.info = "Registration Successfull!!";
+                    Session["info"] = "Registration Successfull!!";
                 }
                 else if(status.Equals("notAdded"))
                 {
-                    ViewBag.info = "Something went Wrong!! Please try again!!";
+                    Session["info"] = "Something went Wrong!! Please try again!!";
                 }
                 else if (status.Equals("Err_UQ_KEY"))
                 {
-                    ViewBag.info = "UserName is not Availeble! Please provide a unique UserName!";
+                    Session["info"] = "UserName is not Availeble! Please provide a unique UserName!";
                 }
                 else if (status.Equals("Err_PK_KEY"))
                 {
-                    ViewBag.info = "User is already registered!";
+                    Session["info"] = "User is already registered!";
                 }
             }
             return RedirectToAction("login", "Login");

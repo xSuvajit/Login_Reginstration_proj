@@ -17,6 +17,7 @@ namespace Login_Reginstration_proj.Controllers
         {
             userOperation = new UserOperation();
         }
+
         public ActionResult login()
         {
             return View();
@@ -44,11 +45,12 @@ namespace Login_Reginstration_proj.Controllers
                     //    TempData["lastLogIn"] = ua.LastLoggedin;
                     //}
                 }
+                Session["info"] = "";
                 return RedirectToAction("userTopics", "Topics");
             }
             else
             {
-                ViewBag.info = "password or username is invalid";
+                Session["info"] = "password or username is invalid";
             }
             return View();
         }
@@ -56,10 +58,8 @@ namespace Login_Reginstration_proj.Controllers
         public ActionResult logout()
         {
             FormsAuthentication.SignOut();
+            Session["info"] = "Log out Successfull!";
             return RedirectToAction("login");
         }
-
-        
-
     }
 }
