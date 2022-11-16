@@ -47,17 +47,9 @@ warning 6002: The table/view 'LoginRegistration.dbo.Topics_Audit' does not have 
           <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="created" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'LoginRegistration.dbo.UserData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="UserData">
           <Key>
-            <PropertyRef Name="userName" />
-            <PropertyRef Name="MyTopics" />
-            <PropertyRef Name="Status" />
-            <PropertyRef Name="createdBy" />
-            <PropertyRef Name="created" />
-            <PropertyRef Name="modifiedBy" />
-            <PropertyRef Name="modified" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MyTopics" Type="varchar" MaxLength="50" Nullable="false" />
@@ -66,6 +58,7 @@ warning 6002: The table/view 'LoginRegistration.dbo.UserData' does not have a pr
           <Property Name="created" Type="datetime" Nullable="false" />
           <Property Name="modifiedBy" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'LoginRegistration.dbo.UserData_Audit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -123,6 +116,7 @@ warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a
           <Property Name="created" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityContainer Name="LoginRegistrationModelStoreContainer">
+          <EntitySet Name="UserData" EntityType="Self.UserData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Topics" EntityType="Self.Topics" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -146,17 +140,6 @@ warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a
     [Topics_Audit].[createdBy] AS [createdBy], 
     [Topics_Audit].[created] AS [created]
     FROM [dbo].[Topics_Audit] AS [Topics_Audit]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="UserData" EntityType="Self.UserData" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [UserData].[userName] AS [userName], 
-    [UserData].[MyTopics] AS [MyTopics], 
-    [UserData].[Status] AS [Status], 
-    [UserData].[createdBy] AS [createdBy], 
-    [UserData].[created] AS [created], 
-    [UserData].[modifiedBy] AS [modifiedBy], 
-    [UserData].[modified] AS [modified]
-    FROM [dbo].[UserData] AS [UserData]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="UserData_Audit" EntityType="Self.UserData_Audit" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -186,6 +169,19 @@ warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LoginRegistrationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="UserData">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MyTopics" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="contact" />
@@ -239,24 +235,6 @@ warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a
           <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="UserData">
-          <Key>
-            <PropertyRef Name="userName" />
-            <PropertyRef Name="MyTopics" />
-            <PropertyRef Name="Status" />
-            <PropertyRef Name="createdBy" />
-            <PropertyRef Name="created" />
-            <PropertyRef Name="modifiedBy" />
-            <PropertyRef Name="modified" />
-          </Key>
-          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MyTopics" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="modifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityType Name="UserData_Audit">
           <Key>
             <PropertyRef Name="userName" />
@@ -293,11 +271,11 @@ warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a
           <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityContainer Name="LoginRegistrationEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LoginRegistrationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserDatas" EntityType="Self.UserData" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Topics" EntityType="Self.Topic" />
           <EntitySet Name="Topics_Audit" EntityType="Self.Topics_Audit" />
-          <EntitySet Name="UserDatas" EntityType="Self.UserData" />
           <EntitySet Name="UserData_Audit" EntityType="Self.UserData_Audit" />
           <EntitySet Name="Users_Audit" EntityType="Self.Users_Audit" />
         </EntityContainer>
@@ -306,7 +284,21 @@ warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LoginRegistrationModelStoreContainer" CdmEntityContainer="LoginRegistrationEntities1">
+        <EntityContainerMapping StorageEntityContainer="LoginRegistrationModelStoreContainer" CdmEntityContainer="LoginRegistrationEntities">
+          <EntitySetMapping Name="UserDatas">
+            <EntityTypeMapping TypeName="LoginRegistrationModel.UserData">
+              <MappingFragment StoreEntitySet="UserData">
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="MyTopics" ColumnName="MyTopics" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="LoginRegistrationModel.User">
               <MappingFragment StoreEntitySet="Users">
@@ -347,19 +339,6 @@ warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a
                 <ScalarProperty Name="TopicCreationTime" ColumnName="TopicCreationTime" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="created" ColumnName="created" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserDatas">
-            <EntityTypeMapping TypeName="LoginRegistrationModel.UserData">
-              <MappingFragment StoreEntitySet="UserData">
-                <ScalarProperty Name="userName" ColumnName="userName" />
-                <ScalarProperty Name="MyTopics" ColumnName="MyTopics" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-                <ScalarProperty Name="created" ColumnName="created" />
-                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

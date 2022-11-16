@@ -43,14 +43,8 @@ namespace Login_Reginstration_proj.Controllers
                     {
                         entity.firstName = u.firstName;
                         entity.lastName = u.lastName;
-                        if (!entity.userName.Equals(u.userName))
-                        {
-                            entity.userName = u.userName;
-                        }
                         entity.SecretId = u.SecretId;
                         entity.modified = DateTime.Now;
-                        entity.modifiedBy = u.userName;
-                        entity.createdBy = u.userName;
                         db.SaveChanges();
                         return entity;
                     }

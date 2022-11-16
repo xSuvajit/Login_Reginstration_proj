@@ -25,10 +25,10 @@ namespace Login_Reginstration_proj.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<UserData> UserDatas { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
         public virtual DbSet<Topics_Audit> Topics_Audit { get; set; }
-        public virtual DbSet<UserData> UserDatas { get; set; }
         public virtual DbSet<UserData_Audit> UserData_Audit { get; set; }
         public virtual DbSet<Users_Audit> Users_Audit { get; set; }
     }

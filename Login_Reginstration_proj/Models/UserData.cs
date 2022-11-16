@@ -11,7 +11,8 @@ namespace Login_Reginstration_proj.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class UserData
     {
         public string userName { get; set; }
@@ -21,5 +22,7 @@ namespace Login_Reginstration_proj.Models
         public System.DateTime created { get; set; }
         public string modifiedBy { get; set; }
         public System.DateTime modified { get; set; }
+        [Key]
+        public int ID { get; set; }
     }
 }

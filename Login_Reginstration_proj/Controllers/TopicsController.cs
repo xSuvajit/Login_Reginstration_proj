@@ -49,8 +49,13 @@ namespace Login_Reginstration_proj.Controllers
         public ActionResult edit(string name)
         {
             User obj1 = userOperation.getUserDetails(name);
-            Session["CurrentUserName"] = obj1.userName;
-            Session["un"] = name;
+            if(obj1==null)
+            {
+                var context = new LoginRegistrationEntities();
+                string usrname = Session["CurrentUserName"].ToString();
+                User user = context.Users.FirstOrDefault(x => x.userName.Equals(usrname));
+                obj1 = user;                
+            }
             return View(obj1);
         }
 
@@ -63,12 +68,13 @@ namespace Login_Reginstration_proj.Controllers
                 User u1 = vc.Put(name, userModel);
                 if (u1 != null)
                 {
+                    Session["CurrentUserName"] = u1.userName;
                     TempData["name"] = u1.firstName + " " + u1.lastName;
                     return View("userTopics");
                 }
                 else
                 {
-                   ViewBag.info= "cannot update data";
+                   ViewBag.info= "Cannot update data";
                     return View();
                 }
             }
@@ -94,8 +100,8 @@ namespace Login_Reginstration_proj.Controllers
 
         public ActionResult delete()
         {
-            string str1 = Session["un"].ToString();
-            bool check=userOperation.deleteUser(str1);
+            string usrName = Session["CurrentUserName"].ToString();
+            bool check=userOperation.deleteUser(usrName);
             if (check)
             {
                 return RedirectToAction("login", "Login");
