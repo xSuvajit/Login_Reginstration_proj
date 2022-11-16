@@ -183,7 +183,7 @@ namespace Login_Reginstration_proj.DbOperation
             var context = new LoginRegistrationEntities();
             foreach(UserData ud in context.UserDatas)
             {
-                if(ud.MyTopics.Equals(topicName))
+                if(ud.MyTopics.Equals(topicName) && ud.userName.Equals(userName))
                 {
                     TopicStatusCode.TryGetValue(StatusCode, out string status);
                     if (!string.IsNullOrEmpty(status))

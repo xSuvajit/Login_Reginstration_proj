@@ -32,37 +32,3 @@
 </p>
 
 
-@model IEnumerable<Login_Reginstration_proj.Models.Topic>
-
-
-@{
-    ViewBag.Title = "Add Topics";
-}
-
-<h2>Add Topics</h2>
-@using (Html.BeginForm("AddTopicToUserData", "Topics"))
-{
-    <table class="table">
-        <tr>
-            <th></th>
-            <td>Topics</td>
-        </tr>
-        <tr>
-            <td>@Html.DisplayName("Topic names:- ")</td>
-            <td>@Html.DropDownList("MyTopics", "Select Topics")</td>
-            <td>
-                <input type="submit" name="Save" value="Save" />
-            </td>
-        </tr>
-    </table>
-}
-<td>
-    @Html.ActionLink("Go Back!", "userTopics")
-</td>
-<p>
-    <div>
-        @Session["info"]
-    </div>
-</p>
-
-
