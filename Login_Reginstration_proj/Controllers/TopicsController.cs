@@ -50,6 +50,7 @@ namespace Login_Reginstration_proj.Controllers
         {
             User obj1 = userOperation.getUserDetails(name);
             Session["CurrentUserName"] = obj1.userName;
+            Session["un"] = name;
             return View(obj1);
         }
 
@@ -90,6 +91,21 @@ namespace Login_Reginstration_proj.Controllers
                 return View();
             }
         }
+
+        public ActionResult delete()
+        {
+            string str1 = Session["un"].ToString();
+            bool check=userOperation.deleteUser(str1);
+            if (check)
+            {
+                return RedirectToAction("login", "Login");
+            }
+            else
+            {
+                return RedirectToAction("Topics");
+            }
+        }
+
         [HttpGet]
         public ActionResult addTopics()
         {
