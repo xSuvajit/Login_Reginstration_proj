@@ -47,7 +47,7 @@ namespace Login_Reginstration_proj.Controllers
                     ViewBag.info = "User is already registered!";
                 }
             }
-            return View();
+            return RedirectToAction("login", "Login");
         }
     }
 }

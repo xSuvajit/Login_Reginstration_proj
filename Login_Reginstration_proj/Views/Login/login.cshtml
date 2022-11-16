@@ -1,5 +1,32 @@
 ﻿@model Login_Reginstration_proj.Models.User
 
+<div class="navbar navbar-inverse navbar-fixed-top">
+
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                <li>@Html.ActionLink("Go to Register", "addUsers", "Register")</li>
+
+
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+
 @{
     ViewBag.Title = "login";
 }
@@ -47,6 +74,6 @@
     <h4>@ViewBag.info</h4>
 </div>
 
-<div>
+@*<div>
     @Html.ActionLink("Go to Register", "addUsers","Register")
-</div>
+</div>*@

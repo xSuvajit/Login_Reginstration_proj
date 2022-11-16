@@ -50,6 +50,7 @@ namespace Login_Reginstration_proj.Controllers
         {
             User obj1 = userOperation.getUserDetails(name);
             TempData["CurrentUserName"] = obj1.userName;
+            Session["username"] = name;
             return View(obj1);
         }
 
@@ -106,6 +107,14 @@ namespace Login_Reginstration_proj.Controllers
         //        return View("userTopics");
         //    }
         //}
+
+        public ActionResult delete()
+        {
+            string str1 = Session["username"].ToString();
+            userOperation.deleteUser(str1);
+            return RedirectToAction("login","Login");
+        }
+
 
         [HttpGet]
         public ActionResult addTopics()

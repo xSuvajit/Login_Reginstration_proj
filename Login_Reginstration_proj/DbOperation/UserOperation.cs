@@ -114,8 +114,8 @@ namespace Login_Reginstration_proj.DbOperation
 
         public bool deleteUser(string username)
         {
-            using (var context = new LoginRegistrationEntities())
-            {
+                var context = new LoginRegistrationEntities();
+            
                 var result = context.Users.FirstOrDefault(x => x.userName.Equals(username));
                 if (result != null)
                 {
@@ -127,7 +127,7 @@ namespace Login_Reginstration_proj.DbOperation
                 {
                     return false;
                 }
-            }
+            
 
         }
 
