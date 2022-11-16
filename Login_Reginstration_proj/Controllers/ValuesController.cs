@@ -9,7 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using System.Web.Mvc;
 
 namespace Login_Reginstration_proj.Controllers
 {
@@ -99,13 +99,12 @@ namespace Login_Reginstration_proj.Controllers
             }
         }
 
-        public void SaveTopic(int id,string username)
+        public SelectList AddTopics()
         {
-            using (LoginRegistrationEntities db = new LoginRegistrationEntities())
-            {
-                Topic tc = db.Topics.FirstOrDefault(t => t.Id == id);
-                User usr = db.Users.FirstOrDefault(u => u.userName.Equals(username));                
-            }            
+            LoginRegistrationEntities db = new LoginRegistrationEntities();           
+            return new SelectList(db.Topics, "Id", "MyTopics");           
         }
+
+        
     }
 }

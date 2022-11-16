@@ -49,7 +49,7 @@ namespace Login_Reginstration_proj.Controllers
         public ActionResult edit(string name)
         {
             User obj1 = userOperation.getUserDetails(name);
-            TempData["CurrentUserName"] = obj1.userName;
+            Session["CurrentUserName"] = obj1.userName;
             return View(obj1);
         }
 
@@ -90,43 +90,38 @@ namespace Login_Reginstration_proj.Controllers
                 return View();
             }
         }
-
-        //[HttpDelete]
-        //public ActionResult delete(string name)
-        //{
-        //    ValuesController vc = new ValuesController();
-        //    TempData["name"] = name;
-        //    if (vc.Delete(name))
-        //    {
-        //        return View("login");
-        //    }
-        //    else 
-        //    {
-        //        ViewBag.info = "Not Deleted!";
-        //        return View("userTopics");
-        //    }
-        //}
-
         [HttpGet]
         public ActionResult addTopics()
         {
             ValuesController vc = new ValuesController();
-            List<int> ids = new List<int>();
-            List<string> topics = new List<string>();
-            vc.AddTopics(out ids, out topics);
-            ViewBag.ids = ids;
-            ViewBag.topics = topics;
+            ViewBag.MyTopics = vc.AddTopics();
             return View();           
         }
 
-        public void Save()
+        public ActionResult Save()
         {
-            string data = Request.Form["MyTopics"].ToString();
-            Int32.TryParse(data,out int selectedId);
             ValuesController vc = new ValuesController();
-            string data1 = TempData["CurrentUserName"].ToString();
-            vc.SaveTopic(selectedId, data1);
-            
+            string data = Request.Form["MyTopics"].ToString();
+            Int32.TryParse(data,out int selectedId);            
+            string userName = Session["CurrentUserName"].ToString();
+            using (LoginRegistrationEntities db = new LoginRegistrationEntities())
+            {
+                User u = db.Users.FirstOrDefault(x => x.userName.Equals(userName));
+                Topic t = db.Topics.FirstOrDefault(x => x.Id == selectedId);
+                UserData userData = new UserData()
+                {
+                    userName = u.userName,
+                    MyTopics = t.MyTopics,
+                    Status = t.Status,
+                    created = DateTime.Now,
+                    modified = DateTime.Now,
+                    createdBy = u.userName,
+                    modifiedBy = u.userName
+                };
+                db.UserDatas.Add(userData);
+                db.SaveChanges();
+                return RedirectToAction("userTopics", "Topics");
+            }
         }
     }
 }

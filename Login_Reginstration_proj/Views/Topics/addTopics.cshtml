@@ -15,18 +15,10 @@
         </tr>
         <tr>
             <td>@Html.DisplayName("Topic names:- ")</td>
-            <td>@Html.DropDownList("MyTopics", new SelectList(ViewBag.topics, ViewBag.ids), "Select")</td>
+            <td>@Html.DropDownList("MyTopics","Select Topics")</td>
             <td>
                 <input type="submit" name="Save" value="Save" />                
             </td>
         </tr>
-        @*<tr>
-            @foreach(var item in Model)
-                {
-                    <td>@item.MyTopics</td>
-                }
-        </tr>*@
-
-
     </table>
 }

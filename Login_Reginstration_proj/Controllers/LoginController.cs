@@ -35,6 +35,7 @@ namespace Login_Reginstration_proj.Controllers
                     if (u != null)
                     {
                         TempData["name"] = u.firstName + " " + u.lastName;
+                        Session["CurrentUserName"] = u.userName;
                     }
                     //Users_Audit ua = context.Users_Audit.FirstOrDefault(x => x.userName.Equals(u1.userName));
                     //if (u1 != null) 
