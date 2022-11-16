@@ -19,11 +19,8 @@ namespace Login_Reginstration_proj.Controllers
             userOperation = new UserOperation();
         }
 
-        // GET: Topics
-        public ActionResult userTopics()
-        {
-            return View();
-        }
+        
+        
         //public ActionResult update()
         //{
         //    //User obj1= userOperation.getUserDetails(id);
@@ -69,7 +66,7 @@ namespace Login_Reginstration_proj.Controllers
                 if (u1 != null)
                 {
                     Session["CurrentUserName"] = u1.userName;
-                    TempData["name"] = u1.firstName + " " + u1.lastName;
+                    Session["name"] = u1.firstName + " " + u1.lastName;
                     return View("userTopics");
                 }
                 else
@@ -120,6 +117,29 @@ namespace Login_Reginstration_proj.Controllers
             return View();           
         }
 
+
+
+        public ActionResult EditStatusTopic()
+        {            
+            return View();
+        }
+
+ 
+        public ActionResult AfterEditStatusTopic()
+        {
+            string statusIdstr = Request.Form["TopicStatus"].ToString();
+            int.TryParse(statusIdstr, out int StatusID);
+            if (StatusID != 0)
+            {
+
+            }
+            else
+            {
+                ViewBag.info = "Please select a status from dropdown list!";
+            }
+            return RedirectToAction("userTopics", "Topics");
+        }
+
         public ActionResult Save()
         {
             ValuesController vc = new ValuesController();
@@ -130,20 +150,37 @@ namespace Login_Reginstration_proj.Controllers
             {
                 User u = db.Users.FirstOrDefault(x => x.userName.Equals(userName));
                 Topic t = db.Topics.FirstOrDefault(x => x.Id == selectedId);
-                UserData userData = new UserData()
+                if (t == null)
                 {
-                    userName = u.userName,
-                    MyTopics = t.MyTopics,
-                    Status = t.Status,
-                    created = DateTime.Now,
-                    modified = DateTime.Now,
-                    createdBy = u.userName,
-                    modifiedBy = u.userName
-                };
-                db.UserDatas.Add(userData);
-                db.SaveChanges();
-                return RedirectToAction("userTopics", "Topics");
+                    return RedirectToAction("addTopics", "Topics");
+                }
+                else
+                {
+                    UserData userData = new UserData()
+                    {
+                        userName = u.userName,
+                        MyTopics = t.MyTopics,
+                        Status = t.Status,
+                        created = DateTime.Now,
+                        modified = DateTime.Now,
+                        createdBy = u.userName,
+                        modifiedBy = u.userName
+                    };
+                    db.UserDatas.Add(userData);
+                    db.SaveChanges();
+                    return RedirectToAction("userTopics", "Topics");
+                }
             }
         }
+
+        public ActionResult userTopics()
+        {
+            string usrname = Session["CurrentUserName"].ToString();
+            ViewBag.UserTopics=userOperation.userSelectedTopics(usrname);
+            return View();
+        }
+
+
+
     }
 }

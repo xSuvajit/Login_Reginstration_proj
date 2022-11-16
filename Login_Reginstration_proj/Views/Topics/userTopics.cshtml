@@ -1,16 +1,58 @@
 ﻿@model Login_Reginstration_proj.Models.UserData
 
+@*<div class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Logout", "logout", "Login")</li>
+
+                </ul>
+            </div>
+
+        </div>
+
+    </div>*@
+
 @{
-    ViewBag.Title = "userTopics";
+    ViewBag.Title = "Topics";
 }
 
-<h2>userTopics</h2>
+<h2>@Session["name"]'s Topics</h2>
 
 <div>
-    <h4>UserData</h4>
     <dl class="dl-horizontal">
     </dl>
 </div>
 <p>
     @Html.ActionLink("Add or Edit Topics", "addTopics")
 </p>
+
+<table>
+    @foreach (var item in ViewBag.UserTopics)
+    {
+        using (Html.BeginForm("EditStatusTopic", "Topics"))
+        {
+            <tr>
+                <td>
+                    @item.MyTopics |
+                    @item.Status |
+                    <input type="submit" name="name" value="Edit" />   
+                    <hr />
+                </td>
+            </tr>
+            
+        }
+    }
+    </table>

@@ -275,6 +275,7 @@
     <Content Include="Views\Login\login.cshtml" />
     <Content Include="Views\Topics\edit.cshtml" />
     <Content Include="Views\Topics\userTopics.cshtml" />
+    <Content Include="Views\Topics\EditStatusTopic.cshtml" />
     <Content Include="Views\Topics\addTopics.cshtml" />
   </ItemGroup>
   <ItemGroup>

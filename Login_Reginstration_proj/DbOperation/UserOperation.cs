@@ -9,8 +9,20 @@ using System.Web;
 
 namespace Login_Reginstration_proj.DbOperation
 {
+    
+
     public class UserOperation
     {
+        public Dictionary<int, string> TopicStatusCode;
+        public UserOperation()
+        {
+            TopicStatusCode = new Dictionary<int, string>();
+            TopicStatusCode.Add(1, "Pending");
+            TopicStatusCode.Add(2, "Completed");
+            TopicStatusCode.Add(3, "In Progress");
+        }
+
+
         public string addUsers(User userModel)
         {            
             try
@@ -114,21 +126,33 @@ namespace Login_Reginstration_proj.DbOperation
 
         public bool deleteUser(string username)
         {
-                var context = new LoginRegistrationEntities();
+            var context = new LoginRegistrationEntities();
             
-                var result = context.Users.FirstOrDefault(x => x.userName.Equals(username));
-                if (result != null)
-                {
-                    context.Users.Remove(result);
-                    context.SaveChanges();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            
+            var result = context.Users.FirstOrDefault(x => x.userName.Equals(username));
+            if (result != null)
+            {
+                context.Users.Remove(result);
+                context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
+        public List<UserData> userSelectedTopics(string userName)
+        {
+            var context = new LoginRegistrationEntities();
+            List<UserData> topics = new List<UserData>();
+            foreach(var item in context.UserDatas)
+            {
+                if(item.userName.Equals(userName))
+                {
+                    topics.Add(item);
+                }
+            }
+            return topics;
         }
 
     }

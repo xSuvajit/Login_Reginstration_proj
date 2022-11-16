@@ -25,7 +25,7 @@
                     @{
                         if (User.Identity.IsAuthenticated)
                         {
-                            <li><a>Welcome @TempData["name"]</a></li>
+                            <li><a>Welcome @Session["name"]</a></li>
                             <li>@Html.ActionLink("Logout", "logout", "Login")</li>
                             string name = @User.Identity.Name.ToString();
                             <li>@Html.ActionLink("Update profile data", "edit", new { name })</li>
