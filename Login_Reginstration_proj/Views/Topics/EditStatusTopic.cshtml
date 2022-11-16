@@ -7,23 +7,36 @@
 <h2>Edit Topic Status</h2>
 @using (Html.BeginForm("AfterEditStatusTopic", "Topics"))
 {
-    <td>
-    @Html.DropDownList("TopicStatus", new List<SelectListItem>
-    {
-        new SelectListItem { Text = "Pending", Value="1"},
-        new SelectListItem { Text = "Completed", Value ="2"},
-        new SelectListItem { Text = "In Progress", Value ="3",Selected=true}
-    })
-    </td>
+<table class="table">
+    <tr>
+        <td>
+            <b>Topic Name- </b>@Session["SelectedTopic"]
+        </td>
 
-    <td> 
-        <input type="submit" value="Save" />
-    </td>
+        <td>
+            @Html.DropDownList("TopicStatus", new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Pending", Value="1"},
+                new SelectListItem { Text = "Completed", Value ="2"},
+                new SelectListItem { Text = "In Progress", Value ="3",Selected=true}
+            })
+        </td>
+
+        <td>
+            <input type="submit" value="Save" />
+        </td>
+    </tr>
+    <tr></tr>
+    <tr></tr>
+    <tr></tr>
+
+    <td>@Html.ActionLink("Go Back!", "userTopics")</td>
+</table>
 }
 
-<td>
-    @Session["info"]
-</td>
+    <td>
+        @Session["info"]
+    </td>
 
 
 

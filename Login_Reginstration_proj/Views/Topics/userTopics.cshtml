@@ -46,7 +46,7 @@
     </tr>
     @foreach (var item in ViewBag.UserTopics)
     {
-        using (Html.BeginForm("EditStatusTopic", "Topics"))
+        using (Html.BeginForm("EditStatusTopic", "Topics", new {topic=@item.MyTopics }))
         {
             <tr>
                 <td>

@@ -94,11 +94,14 @@ namespace Login_Reginstration_proj.Controllers
         {
             ValuesController vc = new ValuesController();
             ViewBag.MyTopics = vc.AddTopics();
+            Session["info"] = "";
             return View();           
         }
 
-        public ActionResult EditStatusTopic()
-        {            
+        public ActionResult EditStatusTopic(string topic)
+        {
+            Session["SelectedTopic"] = topic;
+            Session["info"] = "";
             return View();
         }
  
@@ -107,8 +110,17 @@ namespace Login_Reginstration_proj.Controllers
             string statusIdstr = Request.Form["TopicStatus"].ToString();
             int.TryParse(statusIdstr, out int StatusID);
             string currentUserName = Session["CurrentUserName"].ToString();
-
-            return RedirectToAction("userTopics", "Topics");
+            string currentTopicName = Session["SelectedTopic"].ToString();
+            if(userOperation.StatsUpdate(currentTopicName, currentUserName, StatusID))
+            {
+                Session["info"] = "Status updated successfully!";
+                return RedirectToAction("userTopics", "Topics");
+            }
+            else
+            {
+                Session["info"] = "Something went wrong!";
+                return RedirectToAction("userTopics", "Topics");
+            }            
         }
 
         public ActionResult AddTopicToUserData()
@@ -162,6 +174,7 @@ namespace Login_Reginstration_proj.Controllers
         {
             string usrname = Session["CurrentUserName"].ToString();
             ViewBag.UserTopics=userOperation.userSelectedTopics(usrname);
+            
             return View();
         }
     }
