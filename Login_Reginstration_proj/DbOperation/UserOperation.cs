@@ -13,7 +13,7 @@ namespace Login_Reginstration_proj.DbOperation
 
     public class UserOperation
     {
-        public Dictionary<int, string> TopicStatusCode;
+        private Dictionary<int, string> TopicStatusCode;
         public UserOperation()
         {
             TopicStatusCode = new Dictionary<int, string>();
@@ -175,6 +175,34 @@ namespace Login_Reginstration_proj.DbOperation
                 }
             }
             return topics;
+        }
+
+        public bool StatsUpdate(string topicName,string userName,int StatusCode)
+        {
+            bool flag=false;
+            var context = new LoginRegistrationEntities();
+            foreach(UserData ud in context.UserDatas)
+            {
+                if(ud.MyTopics.Equals(topicName))
+                {
+                    TopicStatusCode.TryGetValue(StatusCode, out string status);
+                    if (!string.IsNullOrEmpty(status))
+                    {
+                        ud.Status = status;
+                        ud.modified = DateTime.Now;                        
+                        flag = true;
+                        break;
+                    }
+                    else
+                    {
+                        flag = false;
+                        break;
+                    }
+
+                }                
+            }
+            context.SaveChanges();
+            return flag;
         }
 
     }

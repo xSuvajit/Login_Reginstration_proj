@@ -28,21 +28,21 @@
 
 
 @{
-    ViewBag.Title = "login";
+    ViewBag.Title = "Login";
 }
 
 
-<h2>login</h2>
+<h2>Login</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -60,7 +60,7 @@
             </div>
         </div>
 
-     
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -75,5 +75,5 @@
 </div>
 
 @*<div>
-    @Html.ActionLink("Go to Register", "addUsers","Register")
-</div>*@
+        @Html.ActionLink("Go to Register", "addUsers","Register")
+    </div>*@

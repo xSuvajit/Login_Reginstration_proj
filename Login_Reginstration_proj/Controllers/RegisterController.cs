@@ -20,6 +20,7 @@ namespace Login_Reginstration_proj.Controllers
 
         public ActionResult addUsers()
         {
+            Session["info"] = "";
             return View();
         }
 
@@ -33,21 +34,27 @@ namespace Login_Reginstration_proj.Controllers
                 {
                     ModelState.Clear();
                     Session["info"] = "Registration Successfull!!";
+                    return RedirectToAction("login", "Login");
                 }
                 else if(status.Equals("notAdded"))
                 {
                     Session["info"] = "Something went Wrong!! Please try again!!";
+                    return View();
                 }
                 else if (status.Equals("Err_UQ_KEY"))
                 {
                     Session["info"] = "UserName is not Availeble! Please provide a unique UserName!";
+                    return View();
                 }
                 else if (status.Equals("Err_PK_KEY"))
                 {
                     Session["info"] = "User is already registered!";
+                    return RedirectToAction("login", "Login");
                 }
+                
             }
-            return RedirectToAction("login", "Login");
+            return View();
+
         }
     }
 }
