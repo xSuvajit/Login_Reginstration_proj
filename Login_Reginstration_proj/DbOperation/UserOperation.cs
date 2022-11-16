@@ -22,6 +22,21 @@ namespace Login_Reginstration_proj.DbOperation
             TopicStatusCode.Add(3, "In Progress");
         }
 
+        public bool IsTopicAlreadyAdded(string userName, int topicId)
+        {            
+            using (LoginRegistrationEntities db = new LoginRegistrationEntities())
+            {
+                String topicName = db.Topics.FirstOrDefault(x => x.Id == topicId).MyTopics;
+                foreach(UserData ud in db.UserDatas)
+                {
+                    if(ud.userName.Equals(userName) && ud.MyTopics.Equals(topicName))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
 
         public string addUsers(User userModel)
         {            
@@ -131,6 +146,13 @@ namespace Login_Reginstration_proj.DbOperation
             var result = context.Users.FirstOrDefault(x => x.userName.Equals(username));
             if (result != null)
             {
+                foreach(UserData ud in context.UserDatas)
+                {
+                    if(ud.userName.Equals(username))
+                    {
+                        context.UserDatas.Remove(ud);
+                    }
+                }
                 context.Users.Remove(result);
                 context.SaveChanges();
                 return true;

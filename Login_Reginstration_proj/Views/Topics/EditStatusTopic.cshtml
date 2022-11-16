@@ -13,7 +13,7 @@
         new SelectListItem { Text = "Pending", Value="1"},
         new SelectListItem { Text = "Completed", Value ="2"},
         new SelectListItem { Text = "In Progress", Value ="3",Selected=true}
-    }, "Select Status")
+    })
     </td>
 
     <td> 
@@ -22,7 +22,7 @@
 }
 
 <td>
-    @ViewBag.info
+    @Session["info"]
 </td>
 
 

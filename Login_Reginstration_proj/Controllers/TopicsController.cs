@@ -19,30 +19,6 @@ namespace Login_Reginstration_proj.Controllers
             userOperation = new UserOperation();
         }
 
-        
-        
-        //public ActionResult update()
-        //{
-        //    //User obj1= userOperation.getUserDetails(id);
-
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult update(string id,User user)
-        //{
-        //    //User obj1= userOperation.getUserDetails(id);
-        //    if (ModelState.IsValid)
-        //    {
-        //       bool check= userOperation.editDetails(id, user);
-        //        return RedirectToAction("login", "Login");
-        //    }
-        //    return View();
-        //}
-
-        
-
-
         public ActionResult edit(string name)
         {
             User obj1 = userOperation.getUserDetails(name);
@@ -67,11 +43,12 @@ namespace Login_Reginstration_proj.Controllers
                 {
                     Session["CurrentUserName"] = u1.userName;
                     Session["name"] = u1.firstName + " " + u1.lastName;
+                    Session["info"] = "Details update succesffully!";
                     return View("userTopics");
                 }
                 else
                 {
-                   ViewBag.info= "Cannot update data";
+                   Session["info"]= "Cannot update data";
                     return View();
                 }
             }
@@ -80,12 +57,12 @@ namespace Login_Reginstration_proj.Controllers
                 string msg = ex.InnerException.InnerException.Message;
                 if (msg.Contains("UNIQUE KEY"))
                 {
-                    ViewBag.info="UserName is not Availeble! Please provide a unique UserName!";
+                    Session["info"]="UserName is not Availeble! Please provide a unique UserName!";
                     return View();
                 }
                 else
                 {
-                    ViewBag.info = "Something went wrong!";
+                    Session["info"] = "Something went wrong!";
                     return View();
                 }
             }
@@ -101,10 +78,12 @@ namespace Login_Reginstration_proj.Controllers
             bool check=userOperation.deleteUser(usrName);
             if (check)
             {
+                Session["info"] = "User deleted successfully!";
                 return RedirectToAction("login", "Login");
             }
             else
             {
+                Session["info"] = "Something went wrong!";
                 return RedirectToAction("Topics");
             }
         }
@@ -123,20 +102,13 @@ namespace Login_Reginstration_proj.Controllers
         {            
             return View();
         }
-
  
         public ActionResult AfterEditStatusTopic()
         {
             string statusIdstr = Request.Form["TopicStatus"].ToString();
             int.TryParse(statusIdstr, out int StatusID);
-            if (StatusID != 0)
-            {
+            string currentUserName = Session["CurrentUserName"].ToString();
 
-            }
-            else
-            {
-                ViewBag.info = "Please select a status from dropdown list!";
-            }
             return RedirectToAction("userTopics", "Topics");
         }
 
@@ -144,32 +116,46 @@ namespace Login_Reginstration_proj.Controllers
         {
             ValuesController vc = new ValuesController();
             string data = Request.Form["MyTopics"].ToString();
-            Int32.TryParse(data,out int selectedId);            
-            string userName = Session["CurrentUserName"].ToString();
-            using (LoginRegistrationEntities db = new LoginRegistrationEntities())
+            Int32.TryParse(data,out int selectedId);      
+            if(selectedId==0)
             {
-                User u = db.Users.FirstOrDefault(x => x.userName.Equals(userName));
-                Topic t = db.Topics.FirstOrDefault(x => x.Id == selectedId);
-                if (t == null)
+                Session["info"] = "Select one valid topic from the dropdown list!";
+                return RedirectToAction("addTopics", "Topics");
+            }
+            string userName = Session["CurrentUserName"].ToString();
+            if(!userOperation.IsTopicAlreadyAdded(userName,selectedId))
+            {
+                using (LoginRegistrationEntities db = new LoginRegistrationEntities())
                 {
-                    return RedirectToAction("addTopics", "Topics");
-                }
-                else
-                {
-                    UserData userData = new UserData()
+                    User u = db.Users.FirstOrDefault(x => x.userName.Equals(userName));
+                    Topic t = db.Topics.FirstOrDefault(x => x.Id == selectedId);
+                    if (t == null)
                     {
-                        userName = u.userName,
-                        MyTopics = t.MyTopics,
-                        Status = t.Status,
-                        created = DateTime.Now,
-                        modified = DateTime.Now,
-                        createdBy = u.userName,
-                        modifiedBy = u.userName
-                    };
-                    db.UserDatas.Add(userData);
-                    db.SaveChanges();
-                    return RedirectToAction("userTopics", "Topics");
+                        return RedirectToAction("addTopics", "Topics");
+                    }
+                    else
+                    {
+                        UserData userData = new UserData()
+                        {
+                            userName = u.userName,
+                            MyTopics = t.MyTopics,
+                            Status = t.Status,
+                            created = DateTime.Now,
+                            modified = DateTime.Now,
+                            createdBy = u.userName,
+                            modifiedBy = u.userName
+                        };
+                        db.UserDatas.Add(userData);
+                        db.SaveChanges();
+                        Session["info"] = "Topic added successfully!";
+                        return RedirectToAction("userTopics", "Topics");
+                    }
                 }
+            }
+            else
+            {                
+                Session["info"] = "Data already added!";
+                return RedirectToAction("userTopics", "Topics");
             }
         }
 
