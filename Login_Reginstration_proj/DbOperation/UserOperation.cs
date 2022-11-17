@@ -204,6 +204,5 @@ namespace Login_Reginstration_proj.DbOperation
             context.SaveChanges();
             return flag;
         }
-
     }
 }

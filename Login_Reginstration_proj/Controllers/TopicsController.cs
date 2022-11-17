@@ -177,5 +177,14 @@ namespace Login_Reginstration_proj.Controllers
             
             return View();
         }
+
+        public ActionResult ShowUserDetails()
+        {
+            string usrname = Session["CurrentUserName"].ToString();
+            LoginRegistrationEntities context = new LoginRegistrationEntities();
+            User user = context.Users.FirstOrDefault(x => x.userName.Equals(usrname));
+            return View(user);
+        }
+
     }
 }

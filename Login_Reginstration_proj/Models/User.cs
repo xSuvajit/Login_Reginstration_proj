@@ -16,10 +16,7 @@ namespace Login_Reginstration_proj.Models
 
     public partial class User
     {
-
-        
         public int Id { get; set; }
-
         [Required(ErrorMessage = "Can't be blank"), DisplayName("First Name")]
         public string firstName { get; set; }
 
@@ -34,11 +31,10 @@ namespace Login_Reginstration_proj.Models
 
         [Required(ErrorMessage = "Can't be blank"), DisplayName("Contact Number")]
         public long contact { get; set; }
-
-
         public string createdBy { get; set; }
         public System.DateTime created { get; set; }
         public string modifiedBy { get; set; }
         public System.DateTime modified { get; set; }
+        public Nullable<System.DateTime> LastLoginTime { get; set; }
     }
 }

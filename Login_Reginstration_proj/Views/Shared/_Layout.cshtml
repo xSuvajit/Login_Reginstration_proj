@@ -29,13 +29,9 @@
                             <li>@Html.ActionLink("Logout", "logout", "Login")</li>
                             string name = @User.Identity.Name.ToString();
                             <li>@Html.ActionLink("Update profile data", "edit", new { name })</li>
-
-                            //<li>@Html.DisplayText(@TempData["lastLogIn"].ToString())</li>
-
+                            <li><a><b>Last Login Time - </b>@Session["lastLogIn"].ToString()</a></li>
                         }
-                        
                     }
-
                 </ul>
             </div>
         </div>

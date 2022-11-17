@@ -90,6 +90,7 @@ warning 6002: The table/view 'LoginRegistration.dbo.UserData_Audit' does not hav
           <Property Name="created" Type="datetime" Nullable="false" />
           <Property Name="modifiedBy" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginTime" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -196,6 +197,7 @@ warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a
           <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="modifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastLoginTime" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Topic">
           <Key>
@@ -312,6 +314,7 @@ warning 6002: The table/view 'LoginRegistration.dbo.Users_Audit' does not have a
                 <ScalarProperty Name="created" ColumnName="created" />
                 <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
