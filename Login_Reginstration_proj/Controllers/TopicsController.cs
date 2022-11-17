@@ -22,6 +22,7 @@ namespace Login_Reginstration_proj.Controllers
 
         public ActionResult edit(string name)
         {
+            Session["info"] = "";
             User obj1 = userOperation.getUserDetails(name);
             if(obj1==null)
             {

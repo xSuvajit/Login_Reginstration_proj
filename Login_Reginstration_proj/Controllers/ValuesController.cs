@@ -78,7 +78,6 @@ namespace Login_Reginstration_proj.Controllers
         public SelectList AddTopics()
         {
             LoginRegistrationEntities db = new LoginRegistrationEntities();
-            db.Dispose();
             return new SelectList(db.Topics, "Id", "MyTopics");           
         }        
     }
