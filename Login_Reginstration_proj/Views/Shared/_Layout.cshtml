@@ -1,12 +1,14 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -25,20 +27,32 @@
                     @{
                         if (User.Identity.IsAuthenticated)
                         {
+                            
+
                             <li><a>Welcome @Session["name"]</a></li>
                             string name = @User.Identity.Name.ToString();
                             <li>@Html.ActionLink("Update profile data", "edit", new { name })</li>
+                            
 
-
-                            <li>@Html.ActionLink("Logout", "logout", "Login")</li>
+                            <div class="topnav-right">
+                                <a> @Html.ActionLink("Logout", "logout", "Login")</a>
+                            </div>
 
                             if (Session["lastLogIn"] != null)
                             {
-                                <li><a><b>Last Login Time - </b>@Session["lastLogIn"].ToString()</a></li>
+                            string str1 = @Session["lastLogIn"].ToString();
+                            <div class="topnav-right1">
+                                <a>Last Login Time -> @str1 </a>
+                            </div>
                             }
-                        }
-                    }
-                </ul>
+
+                            @*if (Session["lastLogIn"] != null)
+                {
+                    <li><a><b>Last Login Time - </b>@Session["lastLogIn"].ToString()</a></li>
+                }*@
+                            }
+                            }
+                        </ul>
             </div>
         </div>
     </div>

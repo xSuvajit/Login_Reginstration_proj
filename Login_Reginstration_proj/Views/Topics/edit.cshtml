@@ -1,7 +1,12 @@
 ﻿@model Login_Reginstration_proj.Models.User
 
+@*<head>
+    <link href="@Url.Content("./Content/Site.css")" rel="stylesheet" type="text/css" />
+</head>*@
 
+<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
 <div class="navbar navbar-inverse navbar-fixed-top">
+   
 
     <div class="container">
         <div class="navbar-header">
@@ -15,21 +20,36 @@
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                @*<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-        <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>*@
 
-                <li>@Html.ActionLink("Delete User", "delete", "Topics")</li>
-                <li>@Html.ActionLink("Show all details", "ShowUserDetails", "Topics")</li>
-
-                <li>@Html.ActionLink("Logout", "logout", "Login")</li>
-
-                if (Session["lastLogIn"] != null)
-                {
-                <li><a><b>Last Login Time - </b>@Session["lastLogIn"].ToString()</a></li>
-                }
+                <div class="topnav-right2">
+                    <a>@Html.ActionLink("Delete User", "delete", "Topics")</a>
+                    <a>@Html.ActionLink("Show all details", "ShowUserDetails", "Topics")</a>
+                </div>
 
             </ul>
+
+       
+
+            <div class="topnav-right">
+                <a> @Html.ActionLink("Logout", "logout", "Login")</a>
+            </div>
+
+
+            @{
+                if (Session["lastLogIn"] != null)
+                {
+                    string str1 = @Session["lastLogIn"].ToString();                   
+                    <div class="topnav-right1">
+                        <a>Last Login Time -> @str1 </a>
+                    </div>
+                }
+
+            }
+
+
+
         </div>
+
 
     </div>
 
@@ -37,35 +57,35 @@
 
 
 
-    @{
-        ViewBag.Title = "Edit User Details!";
-    }
+@{
+    ViewBag.Title = "Edit User Details!";
+}
 
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
-                </div>
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-            @*<div class="form-group">
+        @*<div class="form-group">
                 @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control" } })
@@ -73,26 +93,26 @@
                 </div>
             </div>*@
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.SecretId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.SecretId, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SecretId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />                    
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SecretId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SecretId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SecretId, "", new { @class = "text-danger" })
             </div>
         </div>
-    }
-
-
-    <div>
-        <h5>@Session["info"]</h5>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
     </div>
+}
 
-    <div>
-        @Html.ActionLink("Go Back!", "userTopics")
-    </div>
+
+<div>
+    <h5>@Session["info"]</h5>
+</div>
+
+<div>
+    @Html.ActionLink("Go Back!", "userTopics")
+</div>

@@ -15,3 +15,31 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.topnav-right1 {
+    float: right;
+    font-size: large;
+    padding: 14px 16px;
+    font-family: 'Times New Roman';
+    color: #00ff21
+}
+.topnav-right {
+    float: right;
+    font-size: large;
+    padding: 14px 16px;
+    font-family: 'Times New Roman';
+    color:springgreen;
+}
+
+
+.topnav-right2 {
+    float: inline-start;
+    font-size: large;
+    padding: 14px 16px;
+    font-family: 'Times New Roman';
+    color: #ade918;
+}
+
+
+
+
