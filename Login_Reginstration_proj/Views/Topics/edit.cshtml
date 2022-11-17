@@ -10,17 +10,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Our application on behalf of HCL", "edit", "Topics", new { @class = "navbar-brand" })
         </div>
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
-                <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
-                <li>@Html.ActionLink("Logout", "logout", "Login")</li>
+                @*<li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+        <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>*@
+
                 <li>@Html.ActionLink("Delete User", "delete", "Topics")</li>
                 <li>@Html.ActionLink("Show all details", "ShowUserDetails", "Topics")</li>
-                
+
+                <li>@Html.ActionLink("Logout", "logout", "Login")</li>
+
+                if (Session["lastLogIn"] != null)
+                {
+                <li><a><b>Last Login Time - </b>@Session["lastLogIn"].ToString()</a></li>
+                }
 
             </ul>
         </div>
