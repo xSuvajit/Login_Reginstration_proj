@@ -29,7 +29,10 @@
                             <li>@Html.ActionLink("Logout", "logout", "Login")</li>
                             string name = @User.Identity.Name.ToString();
                             <li>@Html.ActionLink("Update profile data", "edit", new { name })</li>
-                            <li><a><b>Last Login Time - </b>@Session["lastLogIn"].ToString()</a></li>
+                            if (Session["lastLogIn"]!=null)
+                            {
+                                <li><a><b>Last Login Time - </b>@Session["lastLogIn"].ToString()</a></li>
+                            }
                         }
                     }
                 </ul>

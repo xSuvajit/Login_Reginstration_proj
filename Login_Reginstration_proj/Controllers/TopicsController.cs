@@ -28,7 +28,8 @@ namespace Login_Reginstration_proj.Controllers
                 var context = new LoginRegistrationEntities();
                 string usrname = Session["CurrentUserName"].ToString();
                 User user = context.Users.FirstOrDefault(x => x.userName.Equals(usrname));
-                obj1 = user;                
+                obj1 = user;
+                context.Dispose();
             }
             return View(obj1);
         }
@@ -45,7 +46,7 @@ namespace Login_Reginstration_proj.Controllers
                     Session["CurrentUserName"] = u1.userName;
                     Session["name"] = u1.firstName + " " + u1.lastName;
                     Session["info"] = "Details update succesffully!";
-                    return View("userTopics");
+                    return RedirectToAction("userTopics");
                 }
                 else
                 {
@@ -183,6 +184,7 @@ namespace Login_Reginstration_proj.Controllers
             string usrname = Session["CurrentUserName"].ToString();
             LoginRegistrationEntities context = new LoginRegistrationEntities();
             User user = context.Users.FirstOrDefault(x => x.userName.Equals(usrname));
+            context.Dispose();
             return View(user);
         }
 

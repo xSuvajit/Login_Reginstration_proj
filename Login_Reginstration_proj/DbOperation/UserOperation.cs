@@ -155,10 +155,12 @@ namespace Login_Reginstration_proj.DbOperation
                 }
                 context.Users.Remove(result);
                 context.SaveChanges();
+                context.Dispose();
                 return true;
             }
             else
             {
+                context.Dispose();
                 return false;
             }
         }
@@ -174,6 +176,7 @@ namespace Login_Reginstration_proj.DbOperation
                     topics.Add(item);
                 }
             }
+            context.Dispose();
             return topics;
         }
 
@@ -202,6 +205,7 @@ namespace Login_Reginstration_proj.DbOperation
                 }                
             }
             context.SaveChanges();
+            context.Dispose();
             return flag;
         }
     }
