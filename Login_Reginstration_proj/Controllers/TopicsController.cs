@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Login_Reginstration_proj.DbOperation;
+using Login_Reginstration_proj.Models;
+using System;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Login_Reginstration_proj.DbOperation;
-using Login_Reginstration_proj.Models;
 
 namespace Login_Reginstration_proj.Controllers
-{    
+{
     [Authorize]
     public class TopicsController : Controller
     {

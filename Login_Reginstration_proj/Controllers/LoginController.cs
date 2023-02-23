@@ -1,10 +1,8 @@
-﻿using Login_Reginstration_proj.Models;
+﻿using Login_Reginstration_proj.DbOperation;
+using Login_Reginstration_proj.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Login_Reginstration_proj.DbOperation;
 using System.Web.Security;
 
 namespace Login_Reginstration_proj.Controllers

@@ -2,14 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
+
 
 
 namespace Login_Reginstration_proj.DbOperation
 {
-    
+
 
     public class UserOperation
     {
