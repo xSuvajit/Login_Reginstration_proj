@@ -37,12 +37,23 @@ namespace Login_Reginstration_proj.DbOperation
             }
         }
 
-        public string addUsers(User userModel)
+        public string AddUsers(User userModel)
         {            
             try
             {
+
                 using (var context = new LoginRegistrationEntities())
                 {
+                    object a=context.Users.FirstOrDefault(usr => usr.userName.Equals(userModel.userName));
+                    object b=context.Users.FirstOrDefault(usr => usr.contact==userModel.contact);
+                    if(a != null)
+                    {
+                        return "UNIQUE KEY";
+                    }
+                    if(b != null)
+                    {
+                        return "PRIMARY KEY";
+                    }
                     User user = new User()
                     {
                         firstName = userModel.firstName,
@@ -54,25 +65,16 @@ namespace Login_Reginstration_proj.DbOperation
                         created = DateTime.Now,
                         modifiedBy = userModel.userName,
                         modified = DateTime.Now
-                    };
+                    };                    
                     context.Users.Add(user);
                     context.SaveChanges();
                     return "added";
                 }
             }
-            catch(DbUpdateException db)
-            {                
-                string msg = db.InnerException.InnerException.Message;
-                if(msg.Contains("UNIQUE KEY"))
-                {
-                    return "Err_UQ_KEY";
-                }
-                if(msg.Contains("PRIMARY KEY"))
-                {
-                    return "Err_PK_KEY";
-                }
+            catch
+            {
+                return "notAdded";
             }
-            return "notAdded";
         }
 
         public bool login(User user)

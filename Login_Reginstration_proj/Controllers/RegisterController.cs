@@ -21,11 +21,11 @@ namespace Login_Reginstration_proj.Controllers
         }
 
         [HttpPost]
-        public ActionResult addUsers(User u1)
+        public ActionResult AddUsers(User u1)
         {
             if (ModelState.IsValid)
             {
-                string status = userOperation.addUsers(u1);
+                string status = userOperation.AddUsers(u1);
                 if (status.Equals("added"))
                 {
                     ModelState.Clear();
@@ -37,12 +37,12 @@ namespace Login_Reginstration_proj.Controllers
                     Session["info"] = "Something went Wrong!! Please try again!!";
                     return View();
                 }
-                else if (status.Equals("Err_UQ_KEY"))
+                else if (status.Equals("UNIQUE KEY"))
                 {
                     Session["info"] = "UserName is not Availeble! Please provide a unique UserName!";
                     return View();
                 }
-                else if (status.Equals("Err_PK_KEY"))
+                else if (status.Equals("PRIMARY KEY"))
                 {
                     Session["info"] = "User is already registered!";
                     return RedirectToAction("login", "Login");
