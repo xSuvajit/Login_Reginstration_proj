@@ -125,19 +125,15 @@ namespace Login_Reginstration_proj.DbOperation
                         result.modified = DateTime.Now;
                         context.SaveChanges();
                         return "updated";
-                    }                    
+                    }  
+                    return "not updated";
                 }
             }
-            catch(DbUpdateException ex)
+            catch
             {
-                string msg = ex.InnerException.InnerException.Message;
-                if (msg.Contains("UNIQUE KEY"))
-                {
-                    return "Err_UQ_KEY";
-                }
-                
+                return "not updated";
             }
-            return "not updated";
+            
         }
 
         public bool deleteUser(string username)
@@ -202,7 +198,6 @@ namespace Login_Reginstration_proj.DbOperation
                         flag = false;
                         break;
                     }
-
                 }                
             }
             context.SaveChanges();
